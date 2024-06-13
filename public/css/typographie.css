@@ -1,0 +1,44 @@
+@import url(main.css);
+
+h1 {
+  font-size: clamp(1rem, 9vw, 10rem);
+  font-family: var(--ft-for-text);
+}
+
+p {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-family: var(--ft-for-text);
+}
+
+h2 h3 h4 sub {
+  font-size: clamp(1rem, 5vw, 5rem);
+  font-family: var(--ft-for-sub);
+}
+
+.text-in-header {
+  font-weight: 100;
+}
+
+.logo,
+.logo-in-login {
+  font-family: var(--ft-for-sub);
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.sub-in-section-about {
+  font-size: clamp(1rem, 5vw, 5rem);
+  font-family: var(--ft-for-sub);
+}
+
+/*button*/
+
+.btn {
+  border: solid black;
+  background: yellow;
+  padding: 11px 28px 11px 28px;
+  border-radius: 4px;
+  margin-top: 2%;
+  width: 89px;
+  display: flex;
+}

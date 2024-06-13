@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    text-align: center;
+}
+
+h1 {
+    font-size: 10rem;
+    margin: 0;
+    color: #ff6347;
+}
+
+p {
+    font-size: 1.5rem;
+    color: #555;
+}
+
+#dog {
+    position: relative;
+    width: 150px;
+    height: 200px;
+    margin: 20px auto;
+}
+
+.ear, .head, .body, .tail, .eye, .nose, .mouth {
+    position: absolute;
+    background-color: #ff6347;
+}
+
+.ear {
+    width: 30px;
+    height: 50px;
+    top: 0;
+    border-radius: 50%;
+}
+
+.left-ear {
+    left: 10px;
+}
+
+.right-ear {
+    right: 10px;
+}
+
+.head {
+    width: 100px;
+    height: 100px;
+    top: 30px;
+    left: 25px;
+    border-radius: 50%;
+    background-color: #ff8c69;
+    z-index: 1;
+}
+
+.eye {
+    width: 15px;
+    height: 15px;
+    top: 45px;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.left-eye {
+    left: 35px;
+}
+
+.right-eye {
+    right: 35px;
+}
+
+.nose {
+    width: 20px;
+    height: 20px;
+    top: 65px;
+    left: 40px;
+    border-radius: 50%;
+    background-color: #000;
+}
+
+.mouth {
+    width: 40px;
+    height: 10px;
+    top: 90px;
+    left: 30px;
+    border-radius: 20px;
+    background-color: #000;
+}
+
+.body {
+    width: 120px;
+    height: 100px;
+    top: 130px;
+    left: 15px;
+    border-radius: 20px;
+    background-color: #ff8c69;
+}
+
+.tail {
+    width: 20px;
+    height: 60px;
+    top: 140px;
+    left: 135px;
+    border-radius: 50%;
+    background-color: #ff6347;
+}
+
+#homeButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background-color: #ff6347;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#homeButton:hover {
+    background-color: #ff4500;
+}

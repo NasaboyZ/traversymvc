@@ -1,0 +1,364 @@
+@import url(main.css);
+
+.hero-fashion {
+  background-color: var(--bg-webpage);
+  height: 90vh;
+  width: 100%;
+}
+
+.title-in-fashion {
+  width: 100%;
+  padding: 2rem 2rem;
+}
+
+.page-fashion-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0 2rem;
+}
+
+.title-in-movement {
+  justify-content: center;
+  display: flex;
+  padding-top: 4rem;
+}
+
+.div-for-p-and-a-herp-fashion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-massage-to-the-world text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.container-for-video-fashion {
+  width: 100%;
+
+  border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
+  overflow: hidden;
+}
+.container-for-video-fashion video {
+  width: 100%;
+}
+
+/*md-queerie*/
+
+@media screen and (max-width: 760px) {
+  .page-fashion-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .container-for-video-fashion {
+    width: 60%;
+  }
+
+  .div-for-p-and-a-herp-fashion {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 22%;
+    padding-bottom: 3%;
+  }
+
+  .container-for-video-fashion {
+    margin-left: 17%;
+    width: 50%;
+  }
+}
+
+@media (max-width: 550px) {
+  .div-for-p-and-a-herp-fashion {
+    padding-left: 15%;
+    padding-bottom: 5%;
+  }
+
+  .container-for-video-fashion {
+    margin-left: 5%;
+    width: 80%;
+  }
+}
+
+@media (max-width: 370px) {
+  .div-for-p-and-a-herp-fashion {
+    padding-left: 16%;
+    padding-bottom: 22%;
+  }
+
+  .container-for-video-fashion {
+    margin-left: 2%;
+    width: 90%;
+  }
+}
+
+/* main*/
+.title-für-die-erste-section {
+  display: flex;
+  justify-content: center;
+}
+.section-persona {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.section-marina-section {
+  display: grid;
+  flex-direction: row-reverse;
+  padding: 2rem 2rem 4rem;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: solid black 3px;
+  width: 100%;
+}
+
+.img-container-marina {
+  display: flex;
+  overflow: hidden;
+  padding: 2rem 2rem;
+}
+.img-container-marina img {
+  width: 100%;
+
+  object-fit: cover;
+}
+
+@media screen and (max-width: 1100px) {
+  .section-marina-section {
+    grid-template-columns: 1fr;
+  }
+}
+.section-main-reverse-sol {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row-reverse;
+  align-items: center;
+  margin: 30px;
+  gap: 2rem;
+}
+
+.img-container-fashion {
+  max-width: 480px;
+  display: block;
+  margin: 0 auto;
+}
+
+.fashion-pic-in-container {
+  max-width: 100%;
+  height: auto;
+}
+
+.container-arcodion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.container-for-art {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.container-for-art > div {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+}
+
+.diashow {
+  border-bottom: solid black 3px;
+  width: 100%;
+}
+.titel-in-diashow {
+  display: flex;
+  justify-content: center;
+}
+.container-nur-imges {
+  padding: 2rem;
+  overflow: hidden;
+  max-height: 480px;
+  height: 480px;
+  width: 100%;
+}
+.container-nur-imges img {
+  width: 100%;
+  height: auto;
+}
+
+@media screen and (max-width: 1100px) {
+  .container-for-art {
+    grid-template-columns: 1fr;
+  }
+}
+
+.container-arcodion {
+  width: 100%;
+}
+/* arccodium*/
+.arccodion {
+  margin-top: 2rem;
+  padding: 2rem;
+}
+.arccodion-link {
+  text-decoration: none;
+  color: black;
+}
+.fliestext-in-arcodion {
+  font-weight: lighter;
+}
+.arccodion .contentBx {
+  position: relative;
+}
+.arccodion .contentBx .label {
+  position: relative;
+  width: 20%;
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  font-size: clamp(1rem, 2vw, 5rem);
+}
+.arccodion .contentBx .label:before {
+  content: "+";
+  position: relative;
+  top: 23px;
+  right: 4px;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.arccodion .contentBx .content {
+  position: relative;
+  background-color: var(--bg-webpage);
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+  overflow-y: auto;
+}
+.arccodion .contentBx.active .content {
+  height: auto;
+  width: 80%;
+  text-align: left;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  font-weight: 100;
+  justify-content: center;
+  line-height: 40px;
+}
+.arccodion .contentBx.active .label:before {
+  content: "-";
+}
+
+.juliano-mercedes {
+  padding-bottom: 2rem;
+}
+
+.title-für-die-zweite-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.container-for-grid {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 7rem;
+  margin-top: 2rem;
+  grid-template-areas: "container-for-text img-container";
+}
+
+.img-container-for-juliano {
+  display: flex;
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  max-height: 480px;
+  overflow: hidden;
+  grid-area: img-container;
+}
+
+.img-container-for-juliano img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  padding: 2rem;
+}
+
+.container-for-text {
+  grid-area: container-for-text;
+  overflow: hidden;
+  width: 100%;
+}
+.container-for-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+.fliestext-in-container-fashion {
+  margin: 2rem;
+}
+
+.container-horizontale-gallerie {
+  display: flex;
+  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
+  width: 100%;
+  gap: 1rem;
+}
+.container_horizontal-gallerie {
+  height: 35vh;
+  width: 100%;
+  margin-left: 1rem;
+  object-fit: cover;
+  margin-top: 3rem;
+}
+.container-horizontale-gallerie img {
+  scroll-snap-align: start;
+  height: 100%;
+  width: auto;
+}
+
+.bilder-in-horizontales-scrollen {
+  height: auto;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .container-for-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: 3rem;
+    grid-template-areas: "container-for-text" "img-container";
+  }
+
+  .img-container-for-juliano {
+    width: 100%;
+  }
+}
+
+.scroll-to-top-container {
+  height: 2rem;
+  width: 2rem;
+  border: black solid 3px;
+  padding: 5px;
+  transform: rotate(-90deg);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  background-color: #f8f8f8;
+}

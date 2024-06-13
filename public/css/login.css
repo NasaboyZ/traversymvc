@@ -1,0 +1,93 @@
+@import url(main.css);
+
+body {
+  background: rgba(223 230 231);
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+}
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 25px;
+  height: 10vh;
+}
+.logo-in-login {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+.container-for-interaction {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.container-for-interaction > a {
+  text-decoration: none;
+  color: black;
+  padding: 7px 27px 7px 27px;
+  border: solid black 3px;
+  background: yellow;
+}
+form {
+  gap: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input {
+  color: black;
+  border: 0 0 0 10px solid black;
+  background: rgba(223 230 231);
+  border-bottom: solid 3px;
+  border-top: 0;
+  font-size: 1rem;
+  border-right: 0px;
+  border-left: 0px;
+  width: 100%;
+}
+/* input:active {
+  border: none;
+} */
+
+#submit {
+  border: solid 3px;
+  background: yellow;
+  padding: 7px 27px 7px 27px;
+}
+
+span {
+  display: flex;
+  color: red;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 11px;
+  font-size: 1rem;
+}
+
+.container-login {
+  height: 70vh;
+  margin: 30px 30px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+@media screen and (max-width: 450px) {
+  .container-for-interaction {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    gap: 0.5rem;
+  }
+  .container-for-interaction > a {
+    padding: 7px 7px 7px 7px;
+    font-size: 0.8rem;
+  }
+  .frage-an-user {
+    font-size: 0.8rem;
+  }
+}

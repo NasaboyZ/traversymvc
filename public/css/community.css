@@ -1,0 +1,246 @@
+.grid-in-communit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem 2rem;
+}
+
+.container-for-p-and-a-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-bild-in-hero {
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: left;
+  height: 50vh;
+  width: 100%;
+}
+
+.container-bild-in-hero img {
+  object-fit: cover;
+  border-radius: 30px;
+}
+
+@media screen and (max-width: 760px) {
+  .grid-in-communit {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.5rem 2rem 0;
+  }
+  .container-bild-in-hero {
+    justify-content: center;
+    height: 30vh;
+    width: 100%;
+    margin: 2rem 0;
+  }
+}
+
+/*section dreamer*/
+
+.dreamer-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.blog-post-one {
+  display: grid;
+  flex-direction: row-reverse;
+  margin: 2rem 2rem;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+.bild-dreamer {
+  overflow: hidden;
+  margin: 2rem;
+  padding: 2rem 2rem;
+}
+
+.bild-dreamer img {
+  height: auto;
+  width: 100%;
+}
+
+.slim-chaidy {
+  font-weight: 100;
+}
+@media screen and (max-width: 1100px) {
+  .blog-post-one {
+    grid-template-columns: 1fr;
+  }
+}
+/* count up section*/
+.subtitle-for-count-up {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.counter-container-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: auto;
+  gap: 3rem;
+  border-bottom: solid black;
+}
+
+.counter-up-automatic {
+  padding: 3em;
+}
+.counter-number {
+  line-height: 48px;
+  font-size: 48px;
+  font-weight: bold;
+  color: var(--famaly-color-light);
+}
+
+.counter-title {
+  color: var(--famaly-color-light);
+}
+strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.count-up-emoji {
+  font-size: 4rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .counter-container-section {
+    flex-direction: column;
+  }
+  .mwc-title-in-comunity {
+    display: flex;
+    justify-content: center;
+  }
+  .container-bild-text-boxen {
+    grid-template-columns: 1fr;
+  }
+}
+/* looks section*/
+
+.mwc-looks-conntainer {
+  display: grid;
+  flex-direction: row-reverse;
+  margin: 2rem 2rem;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+}
+.contianer-for-button-in-mwc {
+  border-bottom: solid black 8px;
+  display: flex;
+  justify-content: center;
+}
+
+.bild-von-tamina {
+  width: 60vh;
+  overflow: hidden;
+  margin: 2rem;
+  padding: 2rem 2rem;
+}
+.bild-von-tamina img {
+  height: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 1100px) {
+  .mwc-looks-conntainer {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 550px) {
+  .bild-von-tamina {
+    padding: 0;
+    width: 40vh;
+  }
+}
+
+/*art section*/
+.art-in-zurich-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  flex-direction: column;
+
+  border-bottom: solid black;
+}
+
+.subtitle-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.btn-looks {
+  margin-bottom: 4rem;
+  display: inline-block;
+  margin-top: 3rem;
+  border: solid black;
+  background: yellow;
+  padding: 11px 28px 11px 28px;
+  border-radius: 4px;
+}
+.text-in-zurich {
+  font-weight: 100;
+}
+
+.container-bild-text-boxen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+}
+
+.bild-art-zurich {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bild-art-zurich img {
+  height: auto;
+  width: 100%;
+}
+
+.fliess-text-art-in-zurich {
+  width: 100%;
+}
+
+@media screen and (max-width: 1100px) {
+  .container-bild-text-boxen {
+    grid-template-columns: 1fr;
+  }
+  .bild-art-zurich {
+    padding: 2rem;
+  }
+  .mario-title {
+    display: flex;
+    justify-content: center;
+  }
+}
+/*api*/
+
+.blog-post-ort-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-to-top-container {
+  height: 2rem;
+  width: 2rem;
+  border: black solid 3px;
+  padding: 5px;
+  transform: rotate(-90deg);
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  cursor: pointer;
+  background-color: #f8f8f8;
+}

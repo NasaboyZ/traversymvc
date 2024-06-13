@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.28 57.53">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        stroke: #1b1e1b;
+      }
+
+      .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-2, .cls-4 {
+        stroke-width: 2px;
+      }
+
+      .cls-5, .cls-6 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        fill: #1b1e1b;
+        font-family: GeneralSans-Semibold, 'General Sans';
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .cls-7 {
+        letter-spacing: -.01em;
+      }
+
+      .cls-4 {
+        fill: #e6e009;
+        stroke: #000;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g id="Gruppe_18" data-name="Gruppe 18">
+    <g id="Gruppe_9" data-name="Gruppe 9">
+      <g id="Rechteck_8" data-name="Rechteck 8">
+        <rect class="cls-3" x="8" width="46" height="43"/>
+        <rect class="cls-2" x="9" y="1" width="44" height="41"/>
+      </g>
+      <path id="Icon_awesome-arrow-down" data-name="Icon awesome-arrow-down" class="cls-4" d="m40.27,19.81l1.15,1.15c.48.48.49,1.26,0,1.75,0,0,0,0,0,0l-10.04,10.05c-.48.48-1.26.49-1.75,0,0,0,0,0,0,0l-10.05-10.05c-.48-.48-.49-1.26,0-1.75,0,0,0,0,0,0l1.15-1.15c.49-.48,1.27-.48,1.76,0,0,0,.01.01.02.02l5.93,6.23v-14.85c0-.68.55-1.24,1.23-1.24,0,0,0,0,0,0h1.65c.68,0,1.24.55,1.24,1.23,0,0,0,0,0,0v14.85l5.93-6.23c.47-.49,1.25-.52,1.74-.05,0,0,.02.02.03.03Z"/>
+    </g>
+    <g id="Text">
+      <g id="Scroll_down" data-name="Scroll down" class="cls-5">
+        <text class="cls-6" transform="translate(0 55)"><tspan x="0" y="0">Sc</tspan><tspan class="cls-1" x="13.6" y="0">r</tspan><tspan class="cls-8" x="18.04" y="0">oll d</tspan><tspan class="cls-7" x="39.57" y="0">o</tspan><tspan x="45.97" y="0">wn</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

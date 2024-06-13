@@ -1,0 +1,119 @@
+/* Reset für Standard-Stile */
+body,
+h1,
+h2,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Allgemeine Styles */
+body {
+  font-family: "Arial", sans-serif;
+}
+
+/* Header-Stil */
+nav.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.navbar div,
+nav.navbar ul {
+  display: flex;
+  list-style: none;
+}
+
+nav.navbar a {
+  text-decoration: none;
+  color: #fff;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+nav.navbar a:hover {
+  color: #ffd700; /* Ändere die Hover-Farbe nach Bedarf */
+}
+
+/* Ham-Menu-Stil */
+.ham-menu {
+  display: none;
+  cursor: pointer;
+}
+
+.ham-menu-icon {
+  display: flex;
+  flex-direction: column;
+}
+
+.ham-menu-icon span {
+  height: 5px;
+  width: 30px;
+  background-color: #fff;
+  margin: 6px 0;
+}
+
+/* Responsive Navigation */
+@media screen and (max-width: 768px) {
+  nav.navbar ul {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+  }
+
+  nav.navbar ul.show {
+    display: flex;
+  }
+
+  nav.navbar ul a {
+    padding: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .ham-menu {
+    display: block;
+  }
+}
+
+/* Hero-Page-Stil */
+header.hero-page {
+  text-align: center;
+  padding: 50px 0;
+  background-color: #f0f0f0;
+}
+
+h1.horizotal-h1 {
+  color: #333;
+}
+
+.container-for-img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ffd700; /* Ändere die Hover-Farbe nach Bedarf */
+  color: #333;
+}
