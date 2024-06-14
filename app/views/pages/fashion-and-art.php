@@ -1,4 +1,4 @@
-<?php require APPROOT . '/views/inc/head.head.fashionArt.php'; ?>
+<?php require APPROOT . '/views/inc/head/head.fashionArt.php'; ?>
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 <body>

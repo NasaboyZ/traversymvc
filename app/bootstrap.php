@@ -1,4 +1,5 @@
 <?php
+
 // Load Config
 require_once 'config/config.php';
 // Load Helpers
@@ -11,6 +12,6 @@ require_once 'libraries/Database.php';
 
 
   // autoload core libraries
-  spl_autoload_register(function($className){
+spl_autoload_register(function($className){
     require_once 'libraries/' . $className . '.php';
-  });
+});

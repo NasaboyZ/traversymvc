@@ -5,7 +5,7 @@ class Pages extends Controller {
 
     public function __construct(){
         $this->validation = new Validation();
-        $this->adminModel = $this->model('Admin');
+        $this->adminModel = $this->model('AdminModel');
     }
 
     public function index(){
@@ -36,9 +36,16 @@ class Pages extends Controller {
         $this->view('pages/community', $data);
     }
 
+    public function login(){
+        $data = [
+            'title' => 'Login'
+        ];
+        $this->view('pages/login', $data);
+    }
+    
+
     public function kontaktFormular(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Sanitize POST data using filter_input_array with FILTER_SANITIZE_FULL_SPECIAL_CHARS
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $data = [
@@ -53,8 +60,7 @@ class Pages extends Controller {
                 'errors' => []
             ];
 
-            // Validate inputs
-            $this->validation->validateRadio('anrede', $data['anrede'], ['Herr', 'Frau', 'Andere'], 'Bitte wählen Sie eine Anrede.');
+            $this->validation->validateRequired('anrede', $data['anrede'], 'Bitte wählen Sie eine Anrede.');
             $this->validation->validateRequired('firstname', $data['firstname'], 'Bitte geben Sie Ihren Vornamen ein.');
             $this->validation->validateRequired('secondName', $data['secondName'], 'Bitte geben Sie Ihren Nachnamen ein.');
             $this->validation->validateUsername('nutzername', $data['nutzername'], 'Der Nutzername muss 4-16 Zeichen enthalten und darf keine Leerzeichen enthalten.');
@@ -63,22 +69,17 @@ class Pages extends Controller {
             $this->validation->validateMatch('password_repeat', $data['password_repeat'], 'password', $data['password'], 'Die Passwörter stimmen nicht überein.');
             $this->validation->validateRequired('agb', $data['agb'], 'Sie müssen die AGB akzeptieren.');
 
-            // Check for errors
             if ($this->validation->hasErrors()) {
                 $data['errors'] = $this->validation->getErrors();
-                // Load view with errors
                 $this->view('pages/kontakt-formular', $data);
             } else {
-                // Insert data into the database
                 if($this->adminModel->insertAdmin($data)) {
-                    // Redirect to a success page
                     redirect('pages/success');
                 } else {
                     die('Etwas ist schief gelaufen.');
                 }
             }
         } else {
-            // Init data
             $data = [
                 'anrede' => '',
                 'firstname' => '',
@@ -91,7 +92,6 @@ class Pages extends Controller {
                 'errors' => []
             ];
 
-            // Load view
             $this->view('pages/kontakt-formular', $data);
         }
     }
