@@ -238,6 +238,10 @@ body {
   border-radius: 5px;
   margin: 2rem;
 }
+.sidenav__logout a{
+  color: #fff;
+  text-decoration: none;
+}
 
 
 .footer {
