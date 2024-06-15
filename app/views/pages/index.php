@@ -1,9 +1,7 @@
-
 <?php require APPROOT . '/views/inc/head/head.index.php'; ?>
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 <body>
-    
     <header class="hero-page">
         <div class="background">
             <h1 class="title title-in-movement">MoiWear Collectiv</h1>
@@ -22,9 +20,16 @@
 
     <section class="news-horenzotial-letter">
         <div class="container-for-news-latter">
-            <p class="move-newsletter">Next M.W.C Event: 09 / 28 / 24 Sign up! | Next Sustainability Event: 06 / 08 /
-                2 Sign up! </p>
-
+            <p class="move-newsletter">
+                <?php if(!empty($data['events'])): ?>
+                    <?php foreach($data['events'] as $event): ?>
+                        Next Event: <?php echo htmlspecialchars($event->title); ?> on <?php echo htmlspecialchars($event->date); ?>. 
+                        Description: <?php echo htmlspecialchars($event->description); ?> | 
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    No upcoming events.
+                <?php endif; ?>
+            </p>
         </div>
     </section>
 
@@ -44,7 +49,7 @@
         </div>
     </section>
 
-    <<section class="events-and-recources-container-in-index">
+    <section class="events-and-recources-container-in-index">
         <div class="container-sub-event">
             <h2 class="sub">Events,Resource <br>Tutorials.</h2>
         </div>
@@ -58,4 +63,6 @@
             <a href="kontakt-formular.html" class="btn btn-video-container ">Join</a>
         </div>
     </section>
-        <?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require APPROOT . '/views/inc/footer.php'; ?>
+</body>
+</html>

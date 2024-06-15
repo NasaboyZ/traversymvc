@@ -8,6 +8,9 @@
 
     <header class="header">
       <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
+      <div class="header__logout">
+        <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
+      </div>
     </header>
 
     <aside class="sidenav">
@@ -17,12 +20,7 @@
       </div>
       <ul class="sidenav__list">
         <li class="sidenav__list-item">
-          <span>Landing Page</span>
-          <ul class="sub-menu">
-          <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-
-            <li class="sub-menu__item">Video</li>
-          </ul>
+          <span><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></span>
         </li>
         <li class="sidenav__list-item">
           <span>Fashion & Art</span>
@@ -46,22 +44,20 @@
       <div class="main-cards">
         <div class="card">Overview Landing Page
           <div class="main-cards_section">
-            <div class="main-content-cards">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
-          </div>
-          <div class="main-cards_section">
-            <div class="main-content-cards">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
+            <?php foreach ($data['events'] as $event): ?>
+              <div class="main-content-cards">
+                <p>
+                  <strong><?php echo htmlspecialchars($event->title); ?>:</strong> 
+                  <?php echo htmlspecialchars($event->description); ?> 
+                  on <?php echo htmlspecialchars($event->date); ?>
+                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                </p>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
+        
         <div class="card">Overview Fashion & Art
-          <div class="container-main-fashion">
-            <div class="container-content-main-fashi">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
-          </div>
           <div class="container-main-fashion">
             <div class="container-content-main-fashi">
               <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
@@ -69,17 +65,6 @@
           </div>
         </div>
         <div class="card">Overview Community
-          <div class="main-container-for-content-community">
-            <div class="main-content-community">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
-          </div>
-          <div class="main-container-for-content-community">
-            <div class="main-content-community">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
-            
-          </div>
           <div class="main-container-for-content-community">
             <div class="main-content-community">
               <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>

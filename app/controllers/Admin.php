@@ -7,7 +7,7 @@ class Admin extends Controller {
     }
 
     public function index() {
-        $this->view('admin/admin-dashboard');
+        $this->dashboard();
     }
 
     public function login() {
@@ -64,7 +64,7 @@ class Admin extends Controller {
     public function createUserSession($user) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->username;
-        error_log('Redirecting to admin/admin-dashboard');
+        error_log('Redirecting to admin/dashboard');
         redirect('admin/dashboard');
     }
 
@@ -80,24 +80,50 @@ class Admin extends Controller {
             redirect('admin/login');
         }
 
+        $events = $this->adminModel->getAllEvents();
         $data = [
-            'username' => $_SESSION['user_name']
+            'username' => $_SESSION['user_name'],
+            'events' => $events
         ];
 
         $this->view('admin/admin-dashboard', $data);
     }
 
-    // Add the newsbanner method here
     public function newsbanner() {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
         }
 
+        $event = $this->adminModel->getCurrentEvent();
         $data = [
-            'username' => $_SESSION['user_name']
+            'username' => $_SESSION['user_name'],
+            'event' => $event
         ];
 
         $this->view('admin/newsbanner', $data);
+    }
+
+    public function newevent() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            // Clean and sanitize POST data
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+
+            // Loop through each event form data and insert it into the database
+            foreach ($_POST['event_title'] as $key => $title) {
+                $description = trim($_POST['event_description'][$key]);
+                $date = trim($_POST['event_date'][$key]);
+
+                if (!empty($title) && !empty($description) && !empty($date)) {
+                    if (!$this->adminModel->addEvent($title, $description, $date)) {
+                        die('Something went wrong while adding the event.');
+                    }
+                }
+            }
+
+            redirect('admin/dashboard');
+        } else {
+            redirect('admin/newsbanner');
+        }
     }
 }
 ?>

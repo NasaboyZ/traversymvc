@@ -9,8 +9,11 @@ class Pages extends Controller {
     }
 
     public function index(){
+        $events = $this->adminModel->getAllEvents();
+
         $data = [
             'title' => 'MueWear Collectiv',
+            'events' => $events
         ];
         $this->view('pages/index', $data);
     }
@@ -42,7 +45,6 @@ class Pages extends Controller {
         ];
         $this->view('pages/login', $data);
     }
-   
 
     public function kontaktFormular(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -50,8 +50,12 @@
               <div id="event-fields-0" class="event-fields">
                 <div class="event-field">
                   <div class="form-group">
-                    <label for="event-title-description-0">Event Titel und Beschreibung:</label>
-                    <input type="text" id="event-title-description-0" name="event_title_description[]" class="form-control" placeholder="Titel und Beschreibung eingeben" required>
+                    <label for="event-title-0">Event Titel:</label>
+                    <input type="text" id="event-title-0" name="event_title[]" class="form-control" placeholder="Titel eingeben" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="event-description-0">Event Beschreibung:</label>
+                    <textarea id="event-description-0" name="event_description[]" class="form-control" placeholder="Beschreibung eingeben" required></textarea>
                   </div>
                   <div class="form-group">
                     <label for="event-date-0">Event Datum:</label>
@@ -59,6 +63,7 @@
                   </div>
                 </div>
               </div>
+              <button type="submit" class="btn-submit">Speichern</button>
             </form>
           </div>
         </div>
@@ -92,8 +97,12 @@
           <div id="event-fields-${formCount}" class="event-fields">
             <div class="event-field">
               <div class="form-group">
-                <label for="event-title-description-${formCount}">Event Titel und Beschreibung:</label>
-                <input type="text" id="event-title-description-${formCount}" name="event_title_description[]" class="form-control" placeholder="Titel und Beschreibung eingeben" required>
+                <label for="event-title-${formCount}">Event Titel:</label>
+                <input type="text" id="event-title-${formCount}" name="event_title[]" class="form-control" placeholder="Titel eingeben" required>
+              </div>
+              <div class="form-group">
+                <label for="event-description-${formCount}">Event Beschreibung:</label>
+                <textarea id="event-description-${formCount}" name="event_description[]" class="form-control" placeholder="Beschreibung eingeben" required></textarea>
               </div>
               <div class="form-group">
                 <label for="event-date-${formCount}">Event Datum:</label>
