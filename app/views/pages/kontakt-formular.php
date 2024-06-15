@@ -6,7 +6,7 @@
 
     <main>
         <div class="container-form">
-            <form class="form-kontakt" action="<?php echo URLROOT; ?>/formular" method="POST" novalidate>
+            <form class="form-kontakt" action="<?php echo URLROOT; ?>/login" method="POST" novalidate>
                 <div class="container-anrede">
                     <input type="radio" id="male" name="anrede" value="Herr">
                     <label for="male">Herr</label> <br>

@@ -36,12 +36,12 @@
           </ul>
         </li>
       </ul>
+      <div class="sidenav__logout">
+        <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
+      </div>
     </aside>
 
     <main class="main">
-
-      
-
       <div class="main-cards">
         <div class="card">Overview Landing Page
           <div class="main-cards_section">
@@ -67,7 +67,6 @@
             <div class="main-content-community">
               <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
             </div>
-  
           </div>
         </div>
       </div>
@@ -75,7 +74,6 @@
 
     <footer class="footer">
       <div class="footer__copyright">&copy; 2024 Josef Leite</div>
-
     </footer>
   </div>
   <script>

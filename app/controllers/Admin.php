@@ -7,13 +7,12 @@ class Admin extends Controller {
     }
 
     public function index() {
-        // Default method
         $this->view('admin/admin-dashboard');
     }
 
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             $data = [
                 'username' => trim($_POST['username']),
@@ -22,17 +21,14 @@ class Admin extends Controller {
                 'password_err' => ''
             ];
 
-            // Validate username
             if (empty($data['username'])) {
                 $data['username_err'] = 'Please enter username';
             }
 
-            // Validate password
             if (empty($data['password'])) {
                 $data['password_err'] = 'Please enter password';
             }
 
-            // Check for user
             if ($this->adminModel->findUserByUsername($data['username'])) {
                 // User found
             } else {
@@ -40,7 +36,6 @@ class Admin extends Controller {
             }
 
             if (empty($data['username_err']) && empty($data['password_err'])) {
-                // Check and set logged in user
                 $loggedInUser = $this->adminModel->login($data['username'], $data['password']);
 
                 if ($loggedInUser) {
@@ -52,11 +47,9 @@ class Admin extends Controller {
                     $this->view('admin/login', $data);
                 }
             } else {
-                // Load view with errors
                 $this->view('admin/login', $data);
             }
         } else {
-            // Init data
             $data = [
                 'username' => '',
                 'password' => '',
@@ -64,7 +57,6 @@ class Admin extends Controller {
                 'password_err' => ''
             ];
 
-            // Load view
             $this->view('admin/login', $data);
         }
     }
@@ -73,14 +65,14 @@ class Admin extends Controller {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->username;
         error_log('Redirecting to admin/admin-dashboard');
-        redirect('admin/admin-dashboard');
+        redirect('admin/dashboard');
     }
 
     public function logout() {
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
         session_destroy();
-        redirect('admin/login');
+        redirect('pages/login');
     }
 
     public function dashboard() {
@@ -88,7 +80,11 @@ class Admin extends Controller {
             redirect('admin/login');
         }
 
-        $this->view('admin/admin-dashboard');
+        $data = [
+            'username' => $_SESSION['user_name']
+        ];
+
+        $this->view('admin/admin-dashboard', $data);
     }
 }
 ?>
