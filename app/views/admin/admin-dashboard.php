@@ -1,65 +1,90 @@
 <?php require APPROOT . '/views/inc/head/head.admin-dashboard.php'; ?>
 
 <body>
-    <div class='dashboard'>
-        <div class="dashboard-nav">
-            <header>
-                <a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a>
-                <a href="#" class="brand-logo"><i class="fas fa-anchor"></i> <span>Mue Wear Collectiv</span></a>
-            </header>
-            <nav class="dashboard-nav-list">
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-home"></i> Home </a>
-                <a href="#" class="dashboard-nav-item active"><i class="fas fa-tachometer-alt"></i> Dashboard </a>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-file-upload"></i> Upload </a>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-photo-video"></i> Media </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Images</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Video</a>
-                    </div>
-                </div>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-users"></i> Users </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Subscribed</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Non-subscribed</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Banned</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">New</a>
-                    </div>
-                </div>
-                <div class='dashboard-nav-dropdown'>
-                    <a href="#!" class="dashboard-nav-item dashboard-nav-dropdown-toggle"><i class="fas fa-money-check-alt"></i> Payments </a>
-                    <div class='dashboard-nav-dropdown-menu'>
-                        <a href="#" class="dashboard-nav-dropdown-item">All</a>
-                        <a href="#" class="dashboard-nav-dropdown-item">Recent</a>
-                        <a href="#" class="dashboard-nav-dropdown-item"> Projections</a>
-                    </div>
-                </div>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-cogs"></i> Settings </a>
-                <a href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
-                <div class="nav-item-divider"></div>
-                <a href="<?php echo URLROOT; ?>/admin/logout" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Logout </a>
-            </nav>
-        </div>
-        <div class='dashboard-app'>
-            <header class='dashboard-toolbar'><a href="#!" class="menu-toggle"><i class="fas fa-bars"></i></a></header>
-            <div class='dashboard-content'>
-                <div class='container'>
-                    <div class='card'>
-                        <div class='card-header'>
-                            <h1>Welcome back Admin</h1>
-                        </div>
-                        <div class='card-body'>
-                            <p>Your account type is: Administrator</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="grid-container">
+    <div class="menu-icon">
+      <i class="fas fa-bars header__menu"></i>
     </div>
-    <script src="<?php echo URLROOT; ?>/js/admin.js"></script>
+
+    <header class="header">
+      <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
+    </header>
+
+    <aside class="sidenav">
+      <h2 class="title__sidenav">Mue Wear Collectiv</h2>
+      <div class="sidenav__close-icon">
+        <i class="fas fa-times sidenav__brand-close"></i>
+      </div>
+      <ul class="sidenav__list">
+        <li class="sidenav__list-item">
+          <span>Landing Page</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item">News Banner</li>
+            <li class="sub-menu__item">Video</li>
+          </ul>
+        </li>
+        <li class="sidenav__list-item">
+          <span>Fashion & Art</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item">Art</li>
+          </ul>
+        </li>
+        <li class="sidenav__list-item">
+          <span>Community</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item">News Ticker</li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main">
+
+      
+
+      <div class="main-cards">
+        <div class="card">Overview Landing Page
+          <div class="main-cards_section">
+            <div class="main-content-cards">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+          </div>
+          <div class="main-cards_section">
+            <div class="main-content-cards">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+          </div>
+        </div>
+        <div class="card">Overview Fashion & Art
+          <div class="container-main-fashion">
+            <div class="container-content-main-fashi">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+          </div>
+        </div>
+        <div class="card">Overview Community
+          <div class="main-container-for-content-community">
+            <div class="main-content-community">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__copyright">&copy; 2024 Josef Leite</div>
+
+    </footer>
+  </div>
+  <script>
+    document.querySelectorAll('.sidenav__list-item > span').forEach(item => {
+      item.addEventListener('click', () => {
+        const subMenu = item.nextElementSibling;
+        subMenu.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
 </html>
