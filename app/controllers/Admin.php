@@ -86,5 +86,18 @@ class Admin extends Controller {
 
         $this->view('admin/admin-dashboard', $data);
     }
+
+    // Add the newsbanner method here
+    public function newsbanner() {
+        if (!isset($_SESSION['user_id'])) {
+            redirect('admin/login');
+        }
+
+        $data = [
+            'username' => $_SESSION['user_name']
+        ];
+
+        $this->view('admin/newsbanner', $data);
+    }
 }
 ?>

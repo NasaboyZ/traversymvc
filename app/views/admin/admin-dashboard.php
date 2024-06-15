@@ -19,7 +19,8 @@
         <li class="sidenav__list-item">
           <span>Landing Page</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item">News Banner</li>
+          <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
+
             <li class="sub-menu__item">Video</li>
           </ul>
         </li>
@@ -61,8 +62,24 @@
               <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
             </div>
           </div>
+          <div class="container-main-fashion">
+            <div class="container-content-main-fashi">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+          </div>
         </div>
         <div class="card">Overview Community
+          <div class="main-container-for-content-community">
+            <div class="main-content-community">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+          </div>
+          <div class="main-container-for-content-community">
+            <div class="main-content-community">
+              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+            </div>
+            
+          </div>
           <div class="main-container-for-content-community">
             <div class="main-content-community">
               <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>

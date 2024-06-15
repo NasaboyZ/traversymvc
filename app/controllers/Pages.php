@@ -42,7 +42,7 @@ class Pages extends Controller {
         ];
         $this->view('pages/login', $data);
     }
-    
+   
 
     public function kontaktFormular(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
