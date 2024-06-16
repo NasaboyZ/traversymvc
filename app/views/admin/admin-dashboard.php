@@ -26,7 +26,7 @@
         <li class="sidenav__list-item">
           <span onclick="toggleSubMenu(this)">Fashion & Art</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item">Art</li>
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">Fashion & Branding</a></li>
           </ul>
         </li>
         <li class="sidenav__list-item">
@@ -61,12 +61,20 @@
             <?php endforeach; ?>
           </div>
         </div>
-        <div class="card">Overview Fashion & Art
-          <div class="container-main-fashion">
-            <div class="container-content-main-fashi">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
-            </div>
-          </div>
+         <div class="card">Overview Fashion & Art
+         <?php foreach ($data['fashionArtImages'] as $image): ?>
+    <div class="main-content-cards">
+        <h4><?php echo htmlspecialchars($image->title); ?></h4>
+        <p><?php echo htmlspecialchars($image->description); ?></p>
+        <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($image->file_path)); ?>" alt="<?php echo htmlspecialchars($image->title); ?>" style="max-width: 100%;">
+        <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $image->id; ?>)"></i>
+        <div id="options-<?php echo $image->id; ?>" class="options-menu" style="display:none;">
+            <button onclick="editEvent(<?php echo $image->id; ?>)">Edit</button>
+            <button onclick="confirmDelete(<?php echo $image->id; ?>)">Delete</button>
+        </div>
+    </div>
+<?php endforeach; ?>
+
         </div>
         <div class="card">Overview Community
           <div class="main-container-for-content-community">
@@ -82,32 +90,6 @@
       <div class="footer__copyright">&copy; 2024 Josef Leite</div>
     </footer>
   </div>
-  <script>
-    function toggleSubMenu(element) {
-      var subMenu = element.nextElementSibling;
-      subMenu.classList.toggle('active');
-    }
-
-    function showOptions(eventId) {
-      var menu = document.getElementById('options-' + eventId);
-      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-    }
-
-    function editEvent(eventId) {
-      // Redirect to the edit page with the event ID
-      window.location.href = '<?php echo URLROOT; ?>/admin/editEvent/' + eventId;
-    }
-
-    function confirmDelete(eventId) {
-      if (confirm('Are you sure you want to delete this event?')) {
-        // Submit a form to delete the event
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = '<?php echo URLROOT; ?>/admin/deleteEvent/' + eventId;
-        document.body.appendChild(form);
-        form.submit();
-      }
-    }
-  </script>
+  <script src="<?php echo URLROOT; ?>/js/admin-dashboard.js"></script>
 </body>
 </html>

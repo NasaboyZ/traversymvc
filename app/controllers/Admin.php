@@ -64,7 +64,7 @@ class Admin extends Controller {
     public function createUserSession($user) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->username;
-        error_log('Redirecting to admin/dashboard');
+        error_log('Redirecting to admin/admin-dashboard');
         redirect('admin/dashboard');
     }
 
@@ -81,9 +81,12 @@ class Admin extends Controller {
         }
 
         $events = $this->adminModel->getAllEvents();
+        $fashionArtImages = $this->adminModel->getFashionArtImages();
+
         $data = [
             'username' => $_SESSION['user_name'],
-            'events' => $events
+            'events' => $events,
+            'fashionArtImages' => $fashionArtImages
         ];
 
         $this->view('admin/admin-dashboard', $data);
@@ -105,10 +108,8 @@ class Admin extends Controller {
 
     public function newevent() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Clean and sanitize POST data
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
-            // Loop through each event form data and insert it into the database
             foreach ($_POST['event_title'] as $key => $title) {
                 $description = trim($_POST['event_description'][$key]);
                 $date = trim($_POST['event_date'][$key]);
@@ -123,6 +124,70 @@ class Admin extends Controller {
             redirect('admin/dashboard');
         } else {
             redirect('admin/newsbanner');
+        }
+    }
+
+    public function fashionAndBranding() {
+        if (!isset($_SESSION['user_id'])) {
+            redirect('admin/login');
+        }
+
+        $fashionArtImages = $this->adminModel->getFashionArtImages();
+        $data = [
+            'username' => $_SESSION['user_name'],
+            'fashionArtImages' => $fashionArtImages
+        ];
+
+        $this->view('admin/fashionandbranding', $data);
+    }
+
+    public function uploadFashionArtImage() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+
+            $data = [
+                'image_title' => trim($_POST['image_title']),
+                'image_description' => trim($_POST['image_description']),
+                'image_file' => $_FILES['image_file'],
+                'username' => $_SESSION['user_name']
+            ];
+
+            $maxFileSize = 5 * 1024 * 1024;
+
+            if ($data['image_file']['size'] > $maxFileSize) {
+                $data['error'] = 'Die Datei ist zu groß. Maximale Dateigröße ist 5MB.';
+                $this->view('admin/fashionandbranding', $data);
+                return;
+            }
+
+            if (!empty($data['image_file']['name'])) {
+                $target_dir = APPROOT . '/../uploads/';
+                $filename = basename($data['image_file']['name']);
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                $new_filename = pathinfo($filename, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+                $target_file = $target_dir . $new_filename;
+                $imageFileType = strtolower($extension);
+
+                $check = getimagesize($data['image_file']['tmp_name']);
+                if ($check !== false) {
+                    if (resizeImage($data['image_file']['tmp_name'], $target_file, 300)) {
+                        if ($this->adminModel->addFashionArtImage($data['image_title'], $data['image_description'], $target_file)) {
+                            redirect('admin/fashionAndBranding');
+                        } else {
+                            $data['error'] = 'Fehler beim Speichern des Bildes in der Datenbank.';
+                            $this->view('admin/fashionandbranding', $data);
+                        }
+                    } else {
+                        $data['error'] = 'Fehler beim Verkleinern des Bildes.';
+                        $this->view('admin/fashionandbranding', $data);
+                    }
+                } else {
+                    $data['error'] = 'Die Datei ist kein Bild.';
+                    $this->view('admin/fashionandbranding', $data);
+                }
+            }
+        } else {
+            redirect('admin/fashionAndBranding');
         }
     }
 
@@ -141,7 +206,5 @@ class Admin extends Controller {
             redirect('admin/dashboard');
         }
     }
-    
-    
 }
 ?>

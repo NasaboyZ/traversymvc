@@ -41,6 +41,9 @@
     </aside>
 
     <main class="main">
+
+    <h2 class="sub">Willkomen auf der Newsbanner page</h2>
+    <p class="fliesstext">Hier können sie Events erstellen wo auf den Eventsbanner Angezeigt werden um das neuste vom neusten zu wissen.</p>
       <div class="main-cards">
         <div id="event-forms-container">
           <div class="card">

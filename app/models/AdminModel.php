@@ -44,29 +44,43 @@ class AdminModel {
         return $this->db->execute();
     }
 
-    public function updateEvent($title, $description, $date) {
-        $this->db->query('UPDATE events SET title = :title, description = :description, date = :date WHERE is_active = 1');
-        $this->db->bind(':title', $title);
-        $this->db->bind(':description', $description);
-        $this->db->bind(':date', $date);
+    public function updateEvent($data) {
+        $this->db->query('UPDATE events SET title = :title, description = :description, date = :date WHERE id = :id');
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':description', $data['description']);
+        $this->db->bind(':date', $data['date']);
+        $this->db->bind(':id', $data['id']);
         return $this->db->execute();
     }
 
-    public function getAllEvents() {
-        $this->db->query('SELECT * FROM events ORDER BY date DESC');
-        return $this->db->resultSet();
-    }
-
-
+    
     public function deleteEvent($id) {
         $this->db->query('DELETE FROM events WHERE id = :id');
         $this->db->bind(':id', $id);
         return $this->db->execute();
     }
-
     
+    public function getEventById($id) {
+        $this->db->query('SELECT * FROM events WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
+    public function addFashionArtImage($title, $description, $filePath) {
+        $this->db->query('INSERT INTO fashion_art (title, description, file_path, created_at) VALUES (:title, :description, :file_path, NOW())');
+        $this->db->bind(':title', $title);
+        $this->db->bind(':description', $description);
+        $this->db->bind(':file_path', $filePath);
+        
+        return $this->db->execute();
+    }
+    public function getFashionArtImages() {
+        $this->db->query('SELECT * FROM fashion_art ORDER BY created_at DESC');
+        return $this->db->resultSet();
+    }
     
-
-
+    public function getAllEvents() {
+        $this->db->query('SELECT * FROM events ORDER BY date DESC');
+        return $this->db->resultSet();
+    }
 }
 ?>
