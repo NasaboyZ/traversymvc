@@ -26,15 +26,19 @@ class Pages extends Controller {
     }
 
     public function fashionArt(){
+        $events = $this->adminModel->getAllEvents();
         $data = [
-            'title' => 'Fashion & Art'
+            'title' => 'Fashion & Art',
+            'events' => $events
         ];
         $this->view('pages/fashion-and-art', $data);
     }
 
     public function community(){
+        $events = $this->adminModel->getAllEvents();
         $data = [
-            'title' => 'Community'
+            'title' => 'Community',
+            'events' => $events
         ];
         $this->view('pages/community', $data);
     }

@@ -8,9 +8,7 @@
 
     <header class="header">
       <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
-      <div class="header__logout">
-        <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
-      </div>
+
     </header>
 
     <aside class="sidenav">
@@ -20,7 +18,12 @@
       </div>
       <ul class="sidenav__list">
         <li class="sidenav__list-item">
-          <span><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></span>
+          <span>Landing Page</span>
+          <ul class="sub-menu">
+          <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
+
+            <li class="sub-menu__item">Video</li>
+          </ul>
         </li>
         <li class="sidenav__list-item">
           <span>Fashion & Art</span>
@@ -43,7 +46,7 @@
     <main class="main">
       <div class="main-cards">
         <div class="card">Overview Landing Page
-          <div class="main-cards_section">
+        <div class="main-cards_section">
             <?php foreach ($data['events'] as $event): ?>
               <div class="main-content-cards">
                 <p>

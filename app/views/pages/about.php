@@ -20,8 +20,16 @@
 
     <section class="news-horenzotial-letter">
         <div class="container-for-news-latter">
-            <p class="move-newsletter">Next M.W.C Event: 09 / 28 / 24 Sign up! | Next Sustainability Event: 06 / 08 /
-                2 Sign up! </p>
+            <p class="move-newsletter">
+                <?php if(!empty($data['events'])): ?>
+                    <?php foreach($data['events'] as $event): ?>
+                        Next Event: <?php echo htmlspecialchars($event->title); ?> on <?php echo htmlspecialchars($event->date); ?>. 
+                        Description: <?php echo htmlspecialchars($event->description); ?> | 
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    No upcoming events.
+                <?php endif; ?>
+            </p>
         </div>
     </section>
 
