@@ -101,7 +101,10 @@ body {
   cursor: pointer;
   position: relative;
 }
-
+.sidenav__list-item a{
+  text-decoration: none;
+    color: white;
+}
 .sidenav__list-item > span {
   display: inline-block;
   width: 100%;

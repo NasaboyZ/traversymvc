@@ -8,7 +8,6 @@
 
     <header class="header">
       <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
-
     </header>
 
     <aside class="sidenav">
@@ -18,21 +17,20 @@
       </div>
       <ul class="sidenav__list">
         <li class="sidenav__list-item">
-          <span>Landing Page</span>
+          <span onclick="toggleSubMenu(this)">Landing Page</span>
           <ul class="sub-menu">
-          <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-
+            <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
             <li class="sub-menu__item">Video</li>
           </ul>
         </li>
         <li class="sidenav__list-item">
-          <span>Fashion & Art</span>
+          <span onclick="toggleSubMenu(this)">Fashion & Art</span>
           <ul class="sub-menu">
             <li class="sub-menu__item">Art</li>
           </ul>
         </li>
         <li class="sidenav__list-item">
-          <span>Community</span>
+          <span onclick="toggleSubMenu(this)">Community</span>
           <ul class="sub-menu">
             <li class="sub-menu__item">News Ticker</li>
           </ul>
@@ -46,20 +44,23 @@
     <main class="main">
       <div class="main-cards">
         <div class="card">Overview Landing Page
-        <div class="main-cards_section">
+          <div class="main-cards_section">
             <?php foreach ($data['events'] as $event): ?>
               <div class="main-content-cards">
                 <p>
                   <strong><?php echo htmlspecialchars($event->title); ?>:</strong> 
                   <?php echo htmlspecialchars($event->description); ?> 
                   on <?php echo htmlspecialchars($event->date); ?>
-                  <i class="fa-solid fa-ellipsis-vertical"></i>
+                  <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $event->id; ?>)"></i>
                 </p>
+                <div id="options-<?php echo $event->id; ?>" class="options-menu" style="display:none;">
+                  <button onclick="editEvent(<?php echo $event->id; ?>)">Edit</button>
+                  <button onclick="confirmDelete(<?php echo $event->id; ?>)">Delete</button>
+                </div>
               </div>
             <?php endforeach; ?>
           </div>
         </div>
-        
         <div class="card">Overview Fashion & Art
           <div class="container-main-fashion">
             <div class="container-content-main-fashi">
@@ -82,12 +83,31 @@
     </footer>
   </div>
   <script>
-    document.querySelectorAll('.sidenav__list-item > span').forEach(item => {
-      item.addEventListener('click', () => {
-        const subMenu = item.nextElementSibling;
-        subMenu.classList.toggle('active');
-      });
-    });
+    function toggleSubMenu(element) {
+      var subMenu = element.nextElementSibling;
+      subMenu.classList.toggle('active');
+    }
+
+    function showOptions(eventId) {
+      var menu = document.getElementById('options-' + eventId);
+      menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function editEvent(eventId) {
+      // Redirect to the edit page with the event ID
+      window.location.href = '<?php echo URLROOT; ?>/admin/editEvent/' + eventId;
+    }
+
+    function confirmDelete(eventId) {
+      if (confirm('Are you sure you want to delete this event?')) {
+        // Submit a form to delete the event
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '<?php echo URLROOT; ?>/admin/deleteEvent/' + eventId;
+        document.body.appendChild(form);
+        form.submit();
+      }
+    }
   </script>
 </body>
 </html>

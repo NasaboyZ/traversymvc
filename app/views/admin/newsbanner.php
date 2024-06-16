@@ -18,9 +18,7 @@
         <li class="sidenav__list-item">
           <span>Landing Page</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item <?php echo basename($_SERVER['REQUEST_URI']) == 'newsbanner' ? 'active' : ''; ?>">
-              <a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a>
-            </li>
+          <li class="sub-menu__item "><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
             <li class="sub-menu__item">Video</li>
           </ul>
         </li>

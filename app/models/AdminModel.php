@@ -56,5 +56,17 @@ class AdminModel {
         $this->db->query('SELECT * FROM events ORDER BY date DESC');
         return $this->db->resultSet();
     }
+
+
+    public function deleteEvent($id) {
+        $this->db->query('DELETE FROM events WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+
+    
+    
+
+
 }
 ?>
