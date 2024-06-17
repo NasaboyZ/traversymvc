@@ -12,7 +12,7 @@
         </div>
 
         <div class="container-for-pic-header">
-            <img src="assets/bilder/index-option-zwei.png" srcset="assets/bilder/index-option-zwei.webp" alt="Bild"
+            <img src="<?php echo URLROOT; ?>assets/bilder/index-option-zwei.png" srcset="assets/bilder/index-option-zwei.webp" alt="Bild"
                 class="centered-image">
         </div>
 

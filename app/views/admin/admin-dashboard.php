@@ -20,7 +20,6 @@
           <span onclick="toggleSubMenu(this)">Landing Page</span>
           <ul class="sub-menu">
             <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-            <li class="sub-menu__item">Video</li>
           </ul>
         </li>
         <li class="sidenav__list-item">
@@ -33,8 +32,16 @@
           <span onclick="toggleSubMenu(this)">Community</span>
           <ul class="sub-menu">
             <li class="sub-menu__item">News Ticker</li>
+            <li class="sub-menu__item">Blog Post erstellen</li>
           </ul>
         </li>
+        <li class="sidenav__list-item">
+    <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+    <ul class="sub-menu">
+        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+    </ul>
+</li>
+
       </ul>
       <div class="sidenav__logout">
         <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
@@ -46,29 +53,40 @@
         <div class="card">Overview Landing Page
           <div class="main-cards_section">
           <?php foreach ($data['events'] as $event): ?>
-              <div class="main-content-cards">
-                <p>
-                  <strong><?php echo htmlspecialchars($event->title); ?>:</strong> 
-                  <?php echo htmlspecialchars($event->description); ?> 
-                  on <?php echo htmlspecialchars($event->date); ?>
-                  <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $event->id; ?>)"></i>
-                </p>
-                <div id="options-<?php echo $event->id; ?>" class="options-menu" style="display:none;">
-                  <button onclick="editEvent(<?php echo $event->id; ?>)">Edit</button>
-                  <form action="<?php echo URLROOT; ?>/admin/deleteEvent/<?php echo $event->id; ?>" method="post">
-                    <button type="submit">Delete</button>
-                  </form>
-                </div>
-              </div>
-            <?php endforeach; ?>
+    <div class="main-content-cards">
+        <p>
+            <strong><?php echo htmlspecialchars($event->title); ?>:</strong> 
+            <?php echo htmlspecialchars($event->description); ?> 
+            on <?php echo htmlspecialchars($event->date); ?>
+            <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $event->id; ?>)"></i>
+        </p>
+        <div id="options-<?php echo $event->id; ?>" class="options-menu" style="display:none;">
+            <a href="<?php echo URLROOT; ?>/admin/editEvent/<?php echo $event->id; ?>">Edit</a>
+            <form action="<?php echo URLROOT; ?>/admin/deleteEvent/<?php echo $event->id; ?>" method="post">
+                <button type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+
           </div>
         </div>
         <div class="card">Overview Fashion & Art
+  <div class="main-cards_section">
         <?php foreach ($data['fashionArtImages'] as $image): ?>
     <div class="main-content-cards">
+        <div class="content-grid">
+          <div class="title-container">
         <h4><?php echo htmlspecialchars($image->title); ?></h4>
+          </div>
+          <div class="text-container">
         <p><?php echo htmlspecialchars($image->description); ?></p>
+          </div>
+          <div class="image-container">
         <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($image->file_path)); ?>" alt="<?php echo htmlspecialchars($image->title); ?>" class="fashion-art-img">
+          </div>
+        </div>
         <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $image->id; ?>)"></i>
         <div id="options-<?php echo $image->id; ?>" class="options-menu-img" style="display:none;">
             <button onclick="editEvent(<?php echo $image->id; ?>)">Edit</button>
@@ -78,8 +96,9 @@
         </div>
     </div>
 <?php endforeach; ?>
-
+  </div>
         </div>
+
         <div class="card">Overview Community
           <div class="main-container-for-content-community">
             <div class="main-content-community">
