@@ -168,6 +168,10 @@ body {
   border-radius: 5px;
   box-sizing: border-box;
 }
+.fashion-art-img {
+  max-width: 20%;
+}
+
 
 .card {
   display: flex;

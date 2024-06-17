@@ -26,7 +26,7 @@
         <li class="sidenav__list-item">
           <span onclick="toggleSubMenu(this)">Fashion & Art</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">Fashion & Branding</a></li>
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">AI Gen</a></li>
           </ul>
         </li>
         <li class="sidenav__list-item">
@@ -61,14 +61,14 @@
             <?php endforeach; ?>
           </div>
         </div>
-         <div class="card">Overview Fashion & Art
+        <div class="card">Overview Fashion & Art
          <?php foreach ($data['fashionArtImages'] as $image): ?>
     <div class="main-content-cards">
         <h4><?php echo htmlspecialchars($image->title); ?></h4>
         <p><?php echo htmlspecialchars($image->description); ?></p>
-        <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($image->file_path)); ?>" alt="<?php echo htmlspecialchars($image->title); ?>" style="max-width: 100%;">
+        <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($image->file_path)); ?>" alt="<?php echo htmlspecialchars($image->title); ?>" class="fashion-art-img">
         <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $image->id; ?>)"></i>
-        <div id="options-<?php echo $image->id; ?>" class="options-menu" style="display:none;">
+        <div id="options-<?php echo $image->id; ?>" class="options-menu-img" style="display:none;">
             <button onclick="editEvent(<?php echo $image->id; ?>)">Edit</button>
             <button onclick="confirmDelete(<?php echo $image->id; ?>)">Delete</button>
         </div>

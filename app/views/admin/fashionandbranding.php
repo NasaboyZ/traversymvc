@@ -26,7 +26,7 @@
         <li class="sidenav__list-item">
           <span onclick="toggleSubMenu(this)">Fashion & Art</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item">Fashion and Brandinger</li>
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">Fashion & Branding</a></li>
           </ul>
         </li>
         <li class="sidenav__list-item">
@@ -47,14 +47,15 @@
       <div class="main-cards">
         <div class="card">
           <h3>Section and Uploader</h3>
-          <?php if (isset($data['error'])): ?>
-              <div class="error"><?php echo $data['error']; ?></div>
+          <?php if(!empty($data['error'])): ?>
+            <div class="error-message" style="color: red;"><?php echo $data['error']; ?></div>
           <?php endif; ?>
           <form action="<?php echo URLROOT; ?>/admin/uploadFashionArtImage" method="post" enctype="multipart/form-data">
             <div class="upload-container" id="upload-container">
               <i class="fa-solid fa-cloud-arrow-up"></i>
               <p>Upload your landing page video</p>
               <input type="file" id="file-upload" name="image_file" style="display: none;" required>
+              <img id="preview-image" class="preview_img" src="#" alt="Preview" style="display: none;">
             </div>
             <div class="form-group">
               <label for="image-title">Titel des Images</label>
@@ -78,6 +79,18 @@
   <script>
     document.getElementById('upload-container').addEventListener('click', function() {
       document.getElementById('file-upload').click();
+    });
+
+    document.getElementById('file-upload').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('preview-image').src = e.target.result;
+          document.getElementById('preview-image').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
     });
   </script>
   <script src="<?php echo URLROOT; ?>/js/admin-dashboard.js"></script>

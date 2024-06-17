@@ -27,9 +27,11 @@ class Pages extends Controller {
 
     public function fashionArt(){
         $events = $this->adminModel->getAllEvents();
+        $fashionArtImages = $this->adminModel->getFashionArtImages();
         $data = [
             'title' => 'Fashion & Art',
-            'events' => $events
+            'events' => $events,
+            'fashionArtImages' => $fashionArtImages
         ];
         $this->view('pages/fashion-and-art', $data);
     }

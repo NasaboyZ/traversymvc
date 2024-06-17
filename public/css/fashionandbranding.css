@@ -298,7 +298,12 @@
     gap: 1rem;
     width: 100%;
   }
-  
+  .preview_img{
+    max-width: 40%;
+    max-height: 40%;
+    margin: 25px auto 12px auto;
+    display: block
+  }
   .event-field {
     display: grid;
     grid-template-columns: 1fr;

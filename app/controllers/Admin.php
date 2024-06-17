@@ -121,7 +121,7 @@ class Admin extends Controller {
                 }
             }
 
-            redirect('admin/dashboard');
+            redirect('admin/admin-dashboard');
         } else {
             redirect('admin/newsbanner');
         }
@@ -144,52 +144,58 @@ class Admin extends Controller {
     public function uploadFashionArtImage() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
-
+    
             $data = [
                 'image_title' => trim($_POST['image_title']),
                 'image_description' => trim($_POST['image_description']),
                 'image_file' => $_FILES['image_file'],
-                'username' => $_SESSION['user_name']
+                'username' => $_SESSION['user_name'],
+                'error' => ''
             ];
-
+    
+            // Maximale Dateigröße in Bytes (z.B. 5MB)
             $maxFileSize = 5 * 1024 * 1024;
-
+            $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+    
             if ($data['image_file']['size'] > $maxFileSize) {
                 $data['error'] = 'Die Datei ist zu groß. Maximale Dateigröße ist 5MB.';
-                $this->view('admin/fashionandbranding', $data);
-                return;
-            }
-
-            if (!empty($data['image_file']['name'])) {
-                $target_dir = APPROOT . '/../uploads/';
+            } elseif (!in_array($data['image_file']['type'], $allowedTypes)) {
+                $data['error'] = 'Nur JPEG-, PNG- und GIF-Dateien sind erlaubt.';
+            } elseif (!empty($data['image_file']['name'])) {
+                $target_dir = APPROOT . '/../public/uploads/'; 
                 $filename = basename($data['image_file']['name']);
                 $extension = pathinfo($filename, PATHINFO_EXTENSION);
                 $new_filename = pathinfo($filename, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
                 $target_file = $target_dir . $new_filename;
                 $imageFileType = strtolower($extension);
-
+    
+                // Prüfen, ob die Datei ein Bild ist
                 $check = getimagesize($data['image_file']['tmp_name']);
                 if ($check !== false) {
+                    // Bild verkleinern
                     if (resizeImage($data['image_file']['tmp_name'], $target_file, 300)) {
+                        // Bildinformationen in der Datenbank speichern
                         if ($this->adminModel->addFashionArtImage($data['image_title'], $data['image_description'], $target_file)) {
-                            redirect('admin/fashionAndBranding');
+                            redirect('admin/admin-dashboard');
                         } else {
                             $data['error'] = 'Fehler beim Speichern des Bildes in der Datenbank.';
-                            $this->view('admin/fashionandbranding', $data);
                         }
                     } else {
                         $data['error'] = 'Fehler beim Verkleinern des Bildes.';
-                        $this->view('admin/fashionandbranding', $data);
                     }
                 } else {
                     $data['error'] = 'Die Datei ist kein Bild.';
-                    $this->view('admin/fashionandbranding', $data);
                 }
+            }
+    
+            if (!empty($data['error'])) {
+                $this->view('admin/fashionandbranding', $data);
             }
         } else {
             redirect('admin/fashionAndBranding');
         }
     }
+    
 
     public function deleteEvent($id) {
         if (!isset($_SESSION['user_id'])) {
