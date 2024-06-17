@@ -1,6 +1,7 @@
 <?php
 class Admin extends Controller {
     private $adminModel;
+    private $validation;
 
     public function __construct() {
         $this->validation = new Validation();
