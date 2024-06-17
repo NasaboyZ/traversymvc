@@ -35,16 +35,26 @@
     <h2 class="sub title-für-die-erste-section">AI Gen</h2>
     <!-- Neuer Abschnitt für hochgeladene Bilder -->
     <section class="uploaded-fashion-art">
-        <div class="container-for-uploaded-fashion-art">
-            <?php foreach ($data['fashionArtImages'] as $image): ?>
-                <div class="uploaded-fashion-art-item">
-                    <h4><?php echo htmlspecialchars($image->title); ?></h4>
-                    <p><?php echo htmlspecialchars($image->description); ?></p>
+    <div class="container-for-uploaded-fashion-art">
+        <?php foreach ($data['fashionArtImages'] as $image): ?>
+            <div class="uploaded-fashion-art-item">
+                <div class="text-container">
+                    <div class="title-container">
+                        <h2><?php echo htmlspecialchars($image->title); ?></h2>
+                    </div>
+                    <div class="description-container">
+                        <p class="block-text"><?php echo htmlspecialchars($image->description); ?></p>
+                    </div>
+                </div>
+                <div class="image-container">
                     <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($image->file_path)); ?>" alt="<?php echo htmlspecialchars($image->title); ?>" style="max-width: 100%;">
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </section>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+
 
     <section class="diashow">
         <h2 class="sub titel-in-diashow">ART</h2>

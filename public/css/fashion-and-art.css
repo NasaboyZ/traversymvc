@@ -28,6 +28,51 @@
   flex-direction: column;
   align-items: center;
 }
+.uploaded-fashion-art {
+  padding: 0 2rem; 
+}
+
+.uploaded-fashion-art-item {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem; 
+}
+
+.uploaded-fashion-art-item .text-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem; 
+}
+
+.uploaded-fashion-art-item .title-container {
+  margin-bottom: 1rem;
+}
+
+.uploaded-fashion-art-item .description-container {
+  flex: 1;
+}
+
+.uploaded-fashion-art-item .image-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block-text {
+  text-align: justify;
+}
+
+@media screen and (max-width: 760px) {
+  .uploaded-fashion-art-item {
+    flex-direction: column;
+  }
+}
+
 
 .hero-massage-to-the-world text {
   display: flex;

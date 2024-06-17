@@ -209,7 +209,22 @@ class Admin extends Controller {
                 die('Something went wrong');
             }
         } else {
-            redirect('admin/dashboard');
+            redirect('admin/admin-dashboard');
+        }
+    }
+    public function deleteFashionArtImage($id) {
+        if (!isset($_SESSION['user_id'])) {
+            redirect('admin/login');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->adminModel->deleteFashionArtImage($id)) {
+                redirect('admin/dashboard');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('admin/admin-dashboard');
         }
     }
 }

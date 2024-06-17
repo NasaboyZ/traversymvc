@@ -45,7 +45,7 @@
       <div class="main-cards">
         <div class="card">Overview Landing Page
           <div class="main-cards_section">
-            <?php foreach ($data['events'] as $event): ?>
+          <?php foreach ($data['events'] as $event): ?>
               <div class="main-content-cards">
                 <p>
                   <strong><?php echo htmlspecialchars($event->title); ?>:</strong> 
@@ -55,14 +55,16 @@
                 </p>
                 <div id="options-<?php echo $event->id; ?>" class="options-menu" style="display:none;">
                   <button onclick="editEvent(<?php echo $event->id; ?>)">Edit</button>
-                  <button onclick="confirmDelete(<?php echo $event->id; ?>)">Delete</button>
+                  <form action="<?php echo URLROOT; ?>/admin/deleteEvent/<?php echo $event->id; ?>" method="post">
+                    <button type="submit">Delete</button>
+                  </form>
                 </div>
               </div>
             <?php endforeach; ?>
           </div>
         </div>
         <div class="card">Overview Fashion & Art
-         <?php foreach ($data['fashionArtImages'] as $image): ?>
+        <?php foreach ($data['fashionArtImages'] as $image): ?>
     <div class="main-content-cards">
         <h4><?php echo htmlspecialchars($image->title); ?></h4>
         <p><?php echo htmlspecialchars($image->description); ?></p>
@@ -70,7 +72,9 @@
         <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $image->id; ?>)"></i>
         <div id="options-<?php echo $image->id; ?>" class="options-menu-img" style="display:none;">
             <button onclick="editEvent(<?php echo $image->id; ?>)">Edit</button>
-            <button onclick="confirmDelete(<?php echo $image->id; ?>)">Delete</button>
+            <form action="<?php echo URLROOT; ?>/admin/deleteFashionArtImage/<?php echo $image->id; ?>" method="post">
+                <button type="submit">Delete</button>
+            </form>
         </div>
     </div>
 <?php endforeach; ?>

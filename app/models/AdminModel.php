@@ -77,6 +77,11 @@ class AdminModel {
         $this->db->query('SELECT * FROM fashion_art ORDER BY created_at DESC');
         return $this->db->resultSet();
     }
+    public function deleteFashionArtImage($id) {
+        $this->db->query('DELETE FROM fashion_art WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
     
     public function getAllEvents() {
         $this->db->query('SELECT * FROM events ORDER BY date DESC');
