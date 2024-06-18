@@ -25,8 +25,8 @@ class Admin extends Controller {
             }
     
             $data = [
-                'username' => trim($_POST['username']),
-                'password' => trim($_POST['password']),
+                'username' => desinfect(trim($_POST['username'])),
+                'password' => desinfect(trim($_POST['password'])),
                 'username_err' => '',
                 'password_err' => ''
             ];
@@ -89,18 +89,21 @@ class Admin extends Controller {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
         }
-
+    
         $events = $this->adminModel->getAllEvents();
         $fashionArtImages = $this->adminModel->getFashionArtImages();
-
+        $blogposts = $this->adminModel->getAllBlogposts();
+    
         $data = [
             'username' => $_SESSION['user_name'],
             'events' => $events,
-            'fashionArtImages' => $fashionArtImages
+            'fashionArtImages' => $fashionArtImages,
+            'blogposts' => $blogposts
         ];
-
+    
         $this->view('admin/admin-dashboard', $data);
     }
+    
 
     public function newsbanner() {
         if (!isset($_SESSION['user_id'])) {
@@ -121,9 +124,8 @@ class Admin extends Controller {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
 
             foreach ($_POST['event_title'] as $key => $title) {
-                $description = trim($_POST['event_description'][$key]);
-                $date = trim($_POST['event_date'][$key]);
-
+                $description = desinfect(trim($_POST['event_description'][$key]));
+                $date = desinfect(trim($_POST['event_date'][$key]));
                 if (!empty($title) && !empty($description) && !empty($date)) {
                     if (!$this->adminModel->addEvent($title, $description, $date)) {
                         die('Something went wrong while adding the event.');
@@ -342,6 +344,84 @@ class Admin extends Controller {
             $this->view('admin/regristrationsformular', $data);
         }
     }
+
+
+    
+    public function adminBlogPost() {
+        $data = [
+            'username' => $_SESSION['user_name']
+        ];
+    
+        $this->view('admin/admin-blogpost', $data);
+    }
+    
+ 
+    public function createBlogpost() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    
+            // Daten aus dem Formular
+            $title = desinfect($_POST['title']);
+            $body = desinfect($_POST['body']);
+            $image = $_FILES['image'];
+    
+            // Fehler Array
+            $errors = [];
+    
+            // Validierung
+            if (empty($title)) {
+                $errors['title_err'] = 'Bitte geben Sie einen Titel ein';
+            }
+            if (empty($body)) {
+                $errors['body_err'] = 'Bitte geben Sie einen Inhalt ein';
+            }
+            if ($image['size'] == 0) {
+                $errors['image_err'] = 'Bitte wählen Sie ein Bild aus';
+            }
+    
+            // Wenn es keine Fehler gibt
+            if (empty($errors)) {
+                // Bild hochladen und Pfad speichern
+                $target_dir = APPROOT . '/../public/uploads/';
+                $filename = basename($image['name']);
+                $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                $new_filename = pathinfo($filename, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+                $target_file = $target_dir . $new_filename;
+    
+                if (move_uploaded_file($image['tmp_name'], $target_file)) {
+                    // Bild erfolgreich hochgeladen, jetzt in die Datenbank einfügen
+                    if ($this->adminModel->insertBlogpost($title, $body, $new_filename)) {
+                        redirect('admin/admin-dashboard');
+                    } else {
+                        die('Etwas ist schief gelaufen.');
+                    }
+                } else {
+                    $errors['image_err'] = 'Fehler beim Hochladen des Bildes';
+                    $data = [
+                        'title' => $title,
+                        'body' => $body,
+                        'errors' => $errors
+                    ];
+                    $this->view('admin/admin-blogpost', $data);
+                }
+            } else {
+                $data = [
+                    'title' => $title,
+                    'body' => $body,
+                    'errors' => $errors
+                ];
+                $this->view('admin/admin-blogpost', $data);
+            }
+        } else {
+            $data = [
+                'title' => '',
+                'body' => '',
+                'errors' => []
+            ];
+            $this->view('admin/admin-blogpost', $data);
+        }
+    }
+    
     
     
 }

@@ -7,7 +7,7 @@
     </div>
 
     <header class="header">
-      <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
+      <div class="header__avatar"><a href="<?php echo URLROOT; ?>/admin/admin-dashboard">Welcome <?php echo htmlspecialchars($data['username']); ?>!</a></div>
     </header>
 
     <aside class="sidenav">
@@ -29,24 +29,23 @@
           </ul>
         </li>
         <li class="sidenav__list-item">
-          <span onclick="toggleSubMenu(this)">Community</span>
-          <ul class="sub-menu">
-            <li class="sub-menu__item">News Ticker</li>
-            <li class="sub-menu__item">Blog Post erstellen</li>
-          </ul>
-        </li>
-        <li class="sidenav__list-item">
-    <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+      <span onclick="toggleSubMenu(this)">Community</span>
     <ul class="sub-menu">
-        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+        <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/adminBlogPost">Blog Post erstellen</a></li>
     </ul>
 </li>
-
+        <li class="sidenav__list-item">
+          <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+          </ul>
+        </li>
       </ul>
       <div class="sidenav__logout">
         <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
       </div>
     </aside>
+
 
     <main class="main">
       <div class="main-cards">
@@ -101,14 +100,26 @@
 
         <div class="card">Overview Community
           <div class="main-container-for-content-community">
+          <?php foreach ($data['blogposts'] as $post): ?>
             <div class="main-content-community">
-              <p>blablabla <i class="fa-solid fa-ellipsis-vertical"></i></p>
+              <h4><?php echo htmlspecialchars($post->title); ?></h4>
+              <p><?php echo htmlspecialchars($post->body); ?></p>
+              <?php if (!empty($post->image)): ?>
+                <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
+              <?php endif; ?>
+              <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $post->id; ?>)"></i>
+              <div id="options-<?php echo $post->id; ?>" class="options-menu" style="display:none;">
+                <a href="<?php echo URLROOT; ?>/admin/editBlogpost/<?php echo $post->id; ?>">Edit</a>
+                <form action="<?php echo URLROOT; ?>/admin/deleteBlogpost/<?php echo $post->id; ?>" method="post">
+                  <button type="submit">Delete</button>
+                </form>
+              </div>
             </div>
+          <?php endforeach; ?>
           </div>
         </div>
       </div>
     </main>
-
     <footer class="footer">
       <div class="footer__copyright">&copy; 2024 Josef Leite</div>
     </footer>

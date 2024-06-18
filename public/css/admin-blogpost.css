@@ -1,0 +1,48 @@
+.main {
+    padding: 2rem;
+  }
+  
+  .main-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .card {
+    background-color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blogpost-card {
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .blogpost-form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .blogpost-form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .blogpost-btn {
+    background-color: #ffcc00;
+    color: black;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .blogpost-btn:hover {
+    background-color: #ff9900;
+  }

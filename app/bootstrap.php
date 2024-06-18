@@ -7,6 +7,8 @@ require_once 'helpers/url_helper.php';
 require_once 'helpers/resizeImage.php';
 require_once 'helpers/csrf_helper.php';
 require_once 'helpers/session_helper.php';
+require_once 'helpers/sanitaizer_helper.php';
+
 // Load Libraries
 require_once 'libraries/Core.php';
 require_once 'libraries/Controller.php';

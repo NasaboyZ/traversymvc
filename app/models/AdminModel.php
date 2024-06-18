@@ -42,6 +42,7 @@ class AdminModel {
         $this->db->bind(':description', $description);
         $this->db->bind(':date', $date);
         return $this->db->execute();
+        
     }
 
     public function updateEvent($data) {
@@ -101,5 +102,20 @@ class AdminModel {
         
         return $this->db->execute();
     }
+    public function insertBlogpost($title, $body, $image) {
+        $this->db->query('INSERT INTO blogposts (title, body, image) VALUES (:title, :body, :image)');
+        $this->db->bind(':title', $title);
+        $this->db->bind(':body', $body);
+        $this->db->bind(':image', $image);
+        
+        return $this->db->execute();
+    }
+    public function getAllBlogposts() {
+        $this->db->query('SELECT * FROM blogposts ORDER BY created_at DESC');
+        return $this->db->resultSet();
+    }
+    
+    
+
 }
 ?>
