@@ -3,10 +3,7 @@
 <body>
     <nav>
         <div class="logo-in-login"><a href="<?php echo URLROOT; ?>/index">M.W.C</a></div>
-        <div class="container-for-interaction">
-            <p class="frage-an-user">Create an account with us?</p>
-            <a href="<?php echo URLROOT; ?>/pages/kontaktFormular" class="btn-login">Sign up</a>
-        </div>
+        
     </nav>
     <div class="container-login">
         <form action="<?php echo URLROOT; ?>/admin/login" method="POST">

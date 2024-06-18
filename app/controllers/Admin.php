@@ -335,6 +335,7 @@ class Admin extends Controller {
                 'password' => '',
                 'password_repeat' => '',
                 'agb' => '',
+                'username' => $_SESSION['user_name'],
                 'errors' => []
             ];
 

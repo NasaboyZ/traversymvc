@@ -11,7 +11,7 @@
     </header>
 
     <aside class="sidenav">
-      <h2 class="title__sidenav">Mue Wear Collectiv</h2>
+      <h2 class="title__sidenav"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/admin-dashboard">Mue Wear Collectiv</a></h2>
       <div class="sidenav__close-icon">
         <i class="fas fa-times sidenav__brand-close"></i>
       </div>

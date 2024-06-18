@@ -8,14 +8,11 @@ class Pages extends Controller {
 
     public function index(){
         $events = $this->adminModel->getAllEvents();
-        $images = $this->adminModel->getFashionArtImages(); // Holen Sie die Bilder
 
         $data = [
             'title' => 'MueWear Collectiv',
-            'events' => $events,
-            'images' => $images // Fügen Sie die Bilder zu den Daten hinzu
+            'events' => $events
         ];
-
         $this->view('pages/index', $data);
     }
 
@@ -52,5 +49,13 @@ class Pages extends Controller {
         ];
         $this->view('pages/login', $data);
     }
+
+    public function kontakt(){
+        $data = [
+            'title' => 'Kontakt'
+        ];
+        $this->view('pages/kontakt', $data);
+    }
 }
 ?>
+

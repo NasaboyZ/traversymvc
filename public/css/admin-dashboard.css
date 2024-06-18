@@ -22,6 +22,10 @@ body {
     'footer';
   height: 100vh;
 }
+.dashboard-link{
+  text-decoration: none;
+  color: var(--famaly-color-light);
+}
 
 .menu-icon {
   position: fixed;

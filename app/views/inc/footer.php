@@ -16,6 +16,7 @@
                 <li><a href="<?php echo URLROOT; ?>/pages/about">about</a></li>
                 <li><a href="<?php echo URLROOT; ?>/pages/fashionAndArt">Fashion & Art</a>
                 <li><a href="<?php echo URLROOT; ?>/pages/community">Community</a>
+                <li><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
             </ul>
         </div>
 

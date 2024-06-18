@@ -87,5 +87,19 @@ class AdminModel {
         $this->db->query('SELECT * FROM events ORDER BY date DESC');
         return $this->db->resultSet();
     }
+    // Insert the new admin into the database
+    public function insertAdmin($data) {
+        $this->db->query('INSERT INTO admin (username, password, created_at, anrede, firstname, secondName, agb, email) VALUES (:username, :password, :created_at, :anrede, :firstname, :secondName, :agb, :email)');
+        $this->db->bind(':username', $data['nutzername']);
+        $this->db->bind(':password', password_hash($data['password'], PASSWORD_DEFAULT));
+        $this->db->bind(':created_at', date('Y-m-d H:i:s'));
+        $this->db->bind(':anrede', $data['anrede']);
+        $this->db->bind(':firstname', $data['firstname']);
+        $this->db->bind(':secondName', $data['secondName']);
+        $this->db->bind(':agb', $data['agb']);
+        $this->db->bind(':email', $data['email']);
+        
+        return $this->db->execute();
+    }
 }
 ?>

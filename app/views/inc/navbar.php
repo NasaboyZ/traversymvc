@@ -8,8 +8,8 @@
             <li><a href="<?php echo URLROOT; ?>/pages/community">Community</a></li>
         </div>
         <div class="nav-part2">
-            <li><a href="<?php echo URLROOT; ?>/pages/kontaktFormular">Sign in</a></li>
-            <li><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
+            <li><a href="<?php echo URLROOT; ?>/pages/kontakt">Kontakt</a></li>
+
         </div>
     </ul>
     <!-- Js toggle Button -->
@@ -31,7 +31,6 @@
     </ul>
     <ul class="links2">
         <!-- Mobile Links for Burger Icon -->
-        <li><a href="<?php echo URLROOT; ?>/users/login">Login</a></li>
-        <li><a href="<?php echo URLROOT; ?>/pages/kontaktFormular">Sign in</a></li>
+        <li><a href="<?php echo URLROOT; ?>/pages/kontakt">Kontakt</a></li>
     </ul>
 </div>

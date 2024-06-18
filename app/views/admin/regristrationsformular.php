@@ -7,11 +7,15 @@
     </div>
 
     <header class="header">
-    <div class="header__avatar">Welcome <?php echo htmlspecialchars($data['username']); ?>!</div>
+      <div class="header__avatar">
+        <a href="<?php echo URLROOT; ?>/admin/dashboard">
+          Welcome <?php echo isset($data['username']) ? htmlspecialchars($data['username']) : 'Admin'; ?>!
+        </a>
+      </div>
     </header>
 
     <aside class="sidenav">
-      <h2 class="title__sidenav">Mue Wear Collectiv</h2>
+      <h2 class="title__sidenav"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/admin-dashboard">Mue Wear Collectiv</a></h2>
       <div class="sidenav__close-icon">
         <i class="fas fa-times sidenav__brand-close"></i>
       </div>
@@ -36,11 +40,12 @@
           </ul>
         </li>
         <li class="sidenav__list-item">
-          <span onclick="toggleSubMenu(this)">Regristire Admin</span>
-          <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/registerAdmin">Regristieren</a></li>
-          </ul>
-        </li>
+    <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+    <ul class="sub-menu">
+        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+    </ul>
+</li>
+
       </ul>
       <div class="sidenav__logout">
         <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>

@@ -1,7 +1,7 @@
 <?php require APPROOT . '/views/inc/head/head.fashionandbranding.php'; ?>
 
 <body>
-  <div class="grid-container">
+<div class="grid-container">
     <div class="menu-icon">
       <i class="fas fa-bars header__menu"></i>
     </div>
@@ -11,7 +11,7 @@
     </header>
 
     <aside class="sidenav">
-      <h2 class="title__sidenav">Mue Wear Collectiv</h2>
+      <h2 class="title__sidenav"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/admin-dashboard">Mue Wear Collectiv</a></h2>
       <div class="sidenav__close-icon">
         <i class="fas fa-times sidenav__brand-close"></i>
       </div>
@@ -20,21 +20,28 @@
           <span onclick="toggleSubMenu(this)">Landing Page</span>
           <ul class="sub-menu">
             <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-            <li class="sub-menu__item">Video</li>
           </ul>
         </li>
         <li class="sidenav__list-item">
           <span onclick="toggleSubMenu(this)">Fashion & Art</span>
           <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">Fashion & Branding</a></li>
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">AI Gen</a></li>
           </ul>
         </li>
         <li class="sidenav__list-item">
           <span onclick="toggleSubMenu(this)">Community</span>
           <ul class="sub-menu">
             <li class="sub-menu__item">News Ticker</li>
+            <li class="sub-menu__item">Blog Post erstellen</li>
           </ul>
         </li>
+        <li class="sidenav__list-item">
+    <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+    <ul class="sub-menu">
+        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+    </ul>
+</li>
+
       </ul>
       <div class="sidenav__logout">
         <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
