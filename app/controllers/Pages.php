@@ -35,10 +35,10 @@ class Pages extends Controller {
     }
 
     public function community(){
-        $events = $this->adminModel->getAllEvents();
+        $blogposts = $this->adminModel->getAllBlogposts();
         $data = [
             'title' => 'Community',
-            'events' => $events
+            'blogposts' => $blogposts
         ];
         $this->view('pages/community', $data);
     }

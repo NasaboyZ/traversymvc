@@ -187,6 +187,66 @@ body {
   box-sizing: border-box;
 }
 
+.main-container-for-content-community {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-content-community {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.main-content-community h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.main-content-community p {
+  margin: 0;
+  flex: 1;
+  color: #666;
+}
+
+.main-content-community img {
+  max-width: 30%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.main-content-community .options-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.main-content-community .options-menu a,
+.main-content-community .options-menu button {
+  background: #007BFF;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.main-content-community .options-menu button {
+  cursor: pointer;
+}
+
+.main-content-community .options-menu a:hover,
+.main-content-community .options-menu button:hover {
+  background: #0056b3;
+}
 
 .sidenav__logout {
   display: inline-block;

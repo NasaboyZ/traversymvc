@@ -103,8 +103,16 @@
 
     <section class="api">
         <h2 class="sub blog-post-ort-title">Blog Post</h2>
+        <?php foreach ($data['blogposts'] as $post): ?>
+        <div class="blogpost">
+            <h3><?php echo htmlspecialchars($post->title); ?></h3>
+            <p><?php echo htmlspecialchars($post->body); ?></p>
+            <?php if (!empty($post->image)): ?>
+            <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
+            <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
     </section>
-
     <?php require APPROOT . '/views/inc/footer.php'; ?>
 </body>
 </html>

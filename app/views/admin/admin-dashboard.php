@@ -99,23 +99,25 @@
         </div>
 
         <div class="card">Overview Community
-          <div class="main-container-for-content-community">
-          <?php foreach ($data['blogposts'] as $post): ?>
-            <div class="main-content-community">
-              <h4><?php echo htmlspecialchars($post->title); ?></h4>
-              <p><?php echo htmlspecialchars($post->body); ?></p>
-              <?php if (!empty($post->image)): ?>
-                <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
-              <?php endif; ?>
-              <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $post->id; ?>)"></i>
-              <div id="options-<?php echo $post->id; ?>" class="options-menu" style="display:none;">
-                <a href="<?php echo URLROOT; ?>/admin/editBlogpost/<?php echo $post->id; ?>">Edit</a>
-                <form action="<?php echo URLROOT; ?>/admin/deleteBlogpost/<?php echo $post->id; ?>" method="post">
-                  <button type="submit">Delete</button>
-                </form>
-              </div>
-            </div>
-          <?php endforeach; ?>
+  <div class="main-container-for-content-community">
+    <?php foreach ($data['blogposts'] as $post): ?>
+      <div class="main-content-community">
+        <div>
+          <h4><?php echo htmlspecialchars($post->title); ?></h4>
+          <p><?php echo htmlspecialchars($post->body); ?></p>
+        </div>
+        <?php if (!empty($post->image)): ?>
+          <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
+        <?php endif; ?>
+        <i class="fa-solid fa-ellipsis-vertical" onclick="showOptions(<?php echo $post->id; ?>)"></i>
+        <div id="options-<?php echo $post->id; ?>" class="options-menu" style="display:none;">
+          <a href="<?php echo URLROOT; ?>/admin/editBlogpost/<?php echo $post->id; ?>">Edit</a>
+          <form action="<?php echo URLROOT; ?>/admin/deleteBlogpost/<?php echo $post->id; ?>" method="post">
+            <button type="submit">Delete</button>
+          </form>
+        </div>
+      </div>
+    <?php endforeach; ?>
           </div>
         </div>
       </div>
