@@ -239,6 +239,66 @@ class Admin extends Controller {
             redirect('admin/admin-dashboard');
         }
     }
+    public function editFashionArtImage($id) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
+    
+            $data = [
+                'id' => $id,
+                'title' => trim($_POST['title']),
+                'description' => trim($_POST['description']),
+                'file_path' => '',
+                'title_err' => '',
+                'description_err' => ''
+            ];
+    
+            if (empty($data['title'])) {
+                $data['title_err'] = 'Bitte geben Sie einen Titel ein';
+            }
+    
+            if (empty($data['description'])) {
+                $data['description_err'] = 'Bitte geben Sie eine Beschreibung ein';
+            }
+    
+            if (empty($data['title_err']) && empty($data['description_err'])) {
+                if (!empty($_FILES['image']['name'])) {
+                    $target_dir = APPROOT . '/../public/uploads/';
+                    $filename = basename($_FILES['image']['name']);
+                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                    $new_filename = pathinfo($filename, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+                    $target_file = $target_dir . $new_filename;
+    
+                    if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+                        $data['file_path'] = $new_filename;
+                    } else {
+                        $data['file_path'] = '';
+                    }
+                }
+    
+                if ($this->adminModel->updateFashionArtImage($id, $data['title'], $data['description'], $data['file_path'])) {
+                    redirect('admin/admin-dashboard');
+                } else {
+                    die('Etwas ist schief gelaufen.');
+                }
+            } else {
+                $this->view('admin/edit_fashion_art_image', $data);
+            }
+        } else {
+            $image = $this->adminModel->getFashionArtImageById($id);
+    
+            $data = [
+                'id' => $id,
+                'title' => $image->title,
+                'description' => $image->description,
+                'file_path' => $image->file_path,
+                'title_err' => '',
+                'description_err' => ''
+            ];
+    
+            $this->view('admin/edit_fashion_art_image', $data);
+        }
+    }
+    
 
     public function editEvent($id) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -421,7 +481,88 @@ class Admin extends Controller {
             $this->view('admin/admin-blogpost', $data);
         }
     }
+    public function deleteBlogpost($id) {
+        if (!isset($_SESSION['user_id'])) {
+            redirect('admin/login');
+        }
     
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if ($this->adminModel->deleteBlogpost($id)) {
+                redirect('admin/admin-dashboard');
+            } else {
+                die('Something went wrong');
+            }
+        } else {
+            redirect('admin/admin-dashboard');
+        }
+    }
+    public function editBlogpost($id) {
+        if (!isset($_SESSION['user_id'])) {
+            redirect('admin/login');
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+            $data = [
+                'id' => $id,
+                'title' => desinfect($_POST['title']),
+                'body' => desinfect($_POST['body']),
+                'image' => $_FILES['image'],
+                'title_err' => '',
+                'body_err' => '',
+                'image_err' => ''
+            ];
+
+            // Validierung
+            if (empty($data['title'])) {
+                $data['title_err'] = 'Bitte geben Sie einen Titel ein';
+            }
+            if (empty($data['body'])) {
+                $data['body_err'] = 'Bitte geben Sie einen Inhalt ein';
+            }
+
+            if (empty($data['title_err']) && empty($data['body_err'])) {
+                if (!empty($data['image']['name'])) {
+                    $target_dir = APPROOT . '/../public/uploads/';
+                    $filename = basename($data['image']['name']);
+                    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+                    $new_filename = pathinfo($filename, PATHINFO_FILENAME) . '_' . time() . '.' . $extension;
+                    $target_file = $target_dir . $new_filename;
+
+                    if (move_uploaded_file($data['image']['tmp_name'], $target_file)) {
+                        $data['image'] = $new_filename;
+                    } else {
+                        $data['image_err'] = 'Fehler beim Hochladen des Bildes';
+                    }
+                } else {
+                    $data['image'] = $this->adminModel->getBlogpostById($id)->image;
+                }
+
+                if ($this->adminModel->updateBlogpost($data)) {
+                    redirect('admin/admin-dashboard');
+                } else {
+                    die('Etwas ist schief gelaufen.');
+                }
+            } else {
+                $this->view('admin/edit_blogpost', $data);
+            }
+        } else {
+            $blogpost = $this->adminModel->getBlogpostById($id);
+
+            $data = [
+                'id' => $id,
+                'title' => $blogpost->title,
+                'body' => $blogpost->body,
+                'image' => $blogpost->image,
+                'title_err' => '',
+                'body_err' => '',
+                'image_err' => ''
+            ];
+
+            $this->view('admin/edit_blogpost', $data);
+        }
+    }
     
     
 }

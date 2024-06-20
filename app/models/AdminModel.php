@@ -88,6 +88,27 @@ class AdminModel {
         $this->db->query('SELECT * FROM events ORDER BY date DESC');
         return $this->db->resultSet();
     }
+    public function updateFashionArtImage($id, $title, $description, $filePath = null) {
+        if ($filePath) {
+            $this->db->query('UPDATE fashion_art SET title = :title, description = :description, file_path = :file_path WHERE id = :id');
+            $this->db->bind(':file_path', $filePath);
+        } else {
+            $this->db->query('UPDATE fashion_art SET title = :title, description = :description WHERE id = :id');
+        }
+        $this->db->bind(':title', $title);
+        $this->db->bind(':description', $description);
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+    
+    public function getFashionArtImageById($id) {
+        $this->db->query('SELECT * FROM fashion_art WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
+    
+
+
     // Insert the new admin into the database
     public function insertAdmin($data) {
         $this->db->query('INSERT INTO admin (username, password, created_at, anrede, firstname, secondName, agb, email) VALUES (:username, :password, :created_at, :anrede, :firstname, :secondName, :agb, :email)');
@@ -115,8 +136,25 @@ class AdminModel {
         return $this->db->resultSet();
     }
     
-    
-    
+    public function deleteBlogpost($id) {
+        $this->db->query('DELETE FROM blogposts WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->execute();
+    }
+
+    public function getBlogpostById($id) {
+        $this->db->query('SELECT * FROM blogposts WHERE id = :id');
+        $this->db->bind(':id', $id);
+        return $this->db->single();
+    }
+    public function updateBlogpost($data) {
+        $this->db->query('UPDATE blogposts SET title = :title, body = :body, image = :image WHERE id = :id');
+        $this->db->bind(':title', $data['title']);
+        $this->db->bind(':body', $data['body']);
+        $this->db->bind(':image', $data['image']);
+        $this->db->bind(':id', $data['id']);
+        return $this->db->execute();
+    }
 
 }
 ?>
