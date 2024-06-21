@@ -1,107 +1,191 @@
-body {
- 
-  margin: 0;
-  font-family: Arial, sans-serif;
+/* about.css */
+
+/* Beispielstile */
+.background-video {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
 }
 
-aside {
-  width: 250px;
-  background-color: #ccc;
-  padding: 20px;
+.video-bar {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
 }
 
-aside nav a {
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  color: black;
-  margin-bottom: 10px;
+.container-for-text-in-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
 }
 
-aside nav a:hover {
-  background-color: #aaa;
+.main-titel-in-video {
+  font-size: 3rem;
+  margin-bottom: 1rem;
 }
 
-.container {
-  flex-grow: 1;
-  padding: 20px;
-  background-color: #f4f4f4;
+.sub-titel-in-video {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-h1 {
-  margin-top: 0;
+.text-in-header {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+.news-horenzotial-letter {
+  background: #f4f4f4;
+  padding: 1rem 0;
 }
 
-label {
-  margin-top: 10px;
+.container-for-news-latter {
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-input[type="text"] {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.move-newsletter {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
 }
 
-.field-group {
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.section-main-reverse, .section-main-noraml {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+.section-main-reverse .section, .section-main-noraml .section {
+  flex: 1;
+  padding: 1rem;
+}
+
+.section-main-reverse .img-container, .section-main-noraml .img-container {
+  flex: 1;
+  text-align: center;
+}
+
+.img-container img {
+  max-width: 100%;
+  height: auto;
+}
+
+.kleiner-spruch-in-der-main {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.container-for-carousel {
+  margin-top: 2rem;
+}
+
+.carousel {
   position: relative;
+  overflow: hidden;
 }
 
-.menu {
-  position: relative;
-  display: inline-block;
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.3s ease;
 }
 
-.menu-btn {
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
 }
 
-.menu-content {
-  display: none;
+.controls {
   position: absolute;
+  top: 50%;
+  left: 0;
   right: 0;
-  background-color: white;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
 }
 
-.menu-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.menu-content a:hover {
-  background-color: #ddd;
-}
-
-.menu:hover .menu-content {
-  display: block;
-}
-
-button#add-field {
-  padding: 10px;
-  background-color: #4CAF50;
+.arrow {
+  background: rgba(0, 0, 0, 0.5);
   color: white;
-  border: none;
-  border-radius: 4px;
+  padding: 1rem;
   cursor: pointer;
-  margin-top: 20px;
 }
 
-button#add-field:hover {
-  background-color: #45a049;
+.pause-and-play-btn {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.play_arrow, .pause-button {
+  cursor: pointer;
+}
+/* about.css */
+
+.container-for-carousel {
+    margin-top: 2rem;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 400px; /* Feste Höhe für den Slider, kann angepasst werden */
+}
+
+.slider {
+    display: flex;
+    transition: transform 0.3s ease;
+}
+
+.slider-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.slide img {
+    width: 100%;
+    height: 400px; /* Gleiche Höhe wie die Carousel-Höhe */
+    object-fit: cover; /* Bild proportional skalieren und zuschneiden, um den gesamten Bereich zu füllen */
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+
+.arrow {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.pause-and-play-btn {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.play_arrow, .pause-button {
+    cursor: pointer;
 }

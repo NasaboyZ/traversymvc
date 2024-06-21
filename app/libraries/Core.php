@@ -1,5 +1,4 @@
 <?php
-
 class Core {
     protected $currentController = 'Pages';
     protected $currentMethod = 'index';
@@ -17,10 +16,17 @@ class Core {
         if ($url && isset($url[0]) && file_exists('../app/controllers/' . ucwords($url[0]) . '.php')) {
             $this->currentController = ucwords($url[0]);
             unset($url[0]);
+        } elseif ($url && isset($url[0]) && file_exists('../app/controllers/admin/' . ucwords($url[0]) . '.php')) {
+            $this->currentController = 'admin/' . ucwords($url[0]);
+            unset($url[0]);
+        } else {
+            $this->loadErrorPage();
+            return;
         }
 
         require_once '../app/controllers/' . $this->currentController . '.php';
-        $this->currentController = new $this->currentController;
+        $controllerName = basename($this->currentController);
+        $this->currentController = new $controllerName;
 
         if ($url && isset($url[1]) && method_exists($this->currentController, $url[1])) {
             $this->currentMethod = $url[1];
@@ -46,6 +52,11 @@ class Core {
             return $url;
         }
         return [];
+    }
+
+    private function loadErrorPage() {
+        require_once '../app/views/pages/404.php';
+        die();
     }
 }
 ?>

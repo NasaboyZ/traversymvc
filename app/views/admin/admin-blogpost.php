@@ -7,44 +7,44 @@
         </div>
 
         <header class="header">
-            <div class="header__avatar"><a href="<?php echo URLROOT; ?>/admin/dashboard">Welcome <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</a></div>
+            <div class="header__avatar"><a  href="<?php echo URLROOT; ?>/admin/dashboard">Welcome <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</a></div>
         </header>
 
         <aside class="sidenav">
-            <h2 class="title__sidenav"><a href="<?php echo URLROOT; ?>/admin/dashboard">Mue Wear Collectiv</a></h2>
-            <div class="sidenav__close-icon">
-                <i class="fas fa-times sidenav__brand-close"></i>
-            </div>
-            <ul class="sidenav__list">
-                <li class="sidenav__list-item">
-                    <span onclick="toggleSubMenu(this)">Landing Page</span>
-                    <ul class="sub-menu">
-                        <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-                    </ul>
-                </li>
-                <li class="sidenav__list-item">
-                    <span onclick="toggleSubMenu(this)">Fashion & Art</span>
-                    <ul class="sub-menu">
-                        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">AI Gen</a></li>
-                    </ul>
-                </li>
-                <li class="sidenav__list-item">
-                    <span onclick="toggleSubMenu(this)">Community</span>
-                    <ul class="sub-menu">
-                        <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/createBlogpost">Blog Post erstellen</a></li>
-                    </ul>
-                </li>
-                <li class="sidenav__list-item">
-                    <span onclick="toggleSubMenu(this)">Regristire Admin</span>
-                    <ul class="sub-menu">
-                        <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="sidenav__logout">
-                <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
-            </div>
-        </aside>
+      <h2 class="title__sidenav"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/admin-dashboard">Mue Wear Collectiv</a></h2>
+      <div class="sidenav__close-icon">
+        <i class="fas fa-times sidenav__brand-close"></i>
+      </div>
+      <ul class="sidenav__list">
+        <li class="sidenav__list-item">
+          <span onclick="toggleSubMenu(this)">Landing Page</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
+          </ul>
+        </li>
+        <li class="sidenav__list-item">
+          <span onclick="toggleSubMenu(this)">Fashion & Art</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">AI Gen</a></li>
+          </ul>
+        </li>
+        <li class="sidenav__list-item">
+      <span onclick="toggleSubMenu(this)">Community</span>
+    <ul class="sub-menu">
+        <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/adminBlogPost">Blog Post erstellen</a></li>
+    </ul>
+</li>
+        <li class="sidenav__list-item">
+          <span onclick="toggleSubMenu(this)">Regristire Admin</span>
+          <ul class="sub-menu">
+            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div class="sidenav__logout">
+        <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
+      </div>
+    </aside>
 
         <main class="main">
             <div class="main-cards">
@@ -66,7 +66,7 @@
                             <?php endif; ?>
                         </div>
                         <div class="form-group">
-                            <label for="image">Bild:</label>
+                            <label class="bild-cc" for="image">Bild:</label>
                             <input type="file" name="image" class="form-control">
                             <?php if (isset($data['errors']['image_err'])): ?>
                                 <span class="error"><?php echo $data['errors']['image_err']; ?></span>

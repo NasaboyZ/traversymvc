@@ -1,53 +1,69 @@
 <?php require APPROOT . '/views/inc/head/head.admin-dashboard.php'; ?>
 
+
 <body>
-  <div class="grid-container">
-    <div class="menu-icon">
-      <i class="fas fa-bars header__menu"></i>
-    </div>
+    <div class="grid-container">
+        <div class="menu-icon">
+            <i class="fas fa-bars header__menu"></i>
+        </div>
 
-    <header class="header">
-      <div class="header__avatar"><a href="<?php echo URLROOT; ?>/admin/admin-dashboard">Welcome <?php echo htmlspecialchars($data['username']); ?>!</a></div>
-    </header>
+        <header class="header">
+            <div class="header__avatar">
+                <a href="<?php echo URLROOT; ?>/admin/dashboard">Welcome <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</a>
+            </div>
+        </header>
 
-    <aside class="sidenav">
-      <h2 class="title__sidenav"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/admin-dashboard">Mue Wear Collectiv</a></h2>
-      <div class="sidenav__close-icon">
-        <i class="fas fa-times sidenav__brand-close"></i>
-      </div>
-      <ul class="sidenav__list">
-        <li class="sidenav__list-item">
-          <span onclick="toggleSubMenu(this)">Landing Page</span>
-          <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a></li>
-          </ul>
-        </li>
-        <li class="sidenav__list-item">
-          <span onclick="toggleSubMenu(this)">Fashion & Art</span>
-          <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/fashionandbranding">AI Gen</a></li>
-          </ul>
-        </li>
-        <li class="sidenav__list-item">
-      <span onclick="toggleSubMenu(this)">Community</span>
-    <ul class="sub-menu">
-        <li class="sub-menu__item"><a href="<?php echo URLROOT; ?>/admin/adminBlogPost">Blog Post erstellen</a></li>
-    </ul>
-</li>
-        <li class="sidenav__list-item">
-          <span onclick="toggleSubMenu(this)">Regristire Admin</span>
-          <ul class="sub-menu">
-            <li class="sub-menu__item"><a href="<?php echo URLROOT;?>/admin/registerAdmin">Regristieren</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="sidenav__logout">
-        <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
-      </div>
-    </aside>
+        <aside class="sidenav">
+            <h2 class="title__sidenav">
+                <a href="<?php echo URLROOT; ?>/admin/dashboard">Mue Wear Collectiv</a>
+            </h2>
+            <div class="sidenav__close-icon">
+                <i class="fas fa-times sidenav__brand-close"></i>
+            </div>
+            <ul class="sidenav__list">
+                <li class="sidenav__list-item">
+                    <span onclick="toggleSubMenu(this)">Landing Page</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu__item">
+                            <a href="<?php echo URLROOT; ?>/admin/newsbanner">News Banner</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidenav__list-item">
+                    <span onclick="toggleSubMenu(this)">Fashion & Art</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu__item">
+                            <a href="<?php echo URLROOT; ?>/admin/fashionandbranding">AI Gen</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidenav__list-item">
+                    <span onclick="toggleSubMenu(this)">Community</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu__item">
+                            <a href="<?php echo URLROOT; ?>/admin/createBlogpost">Blog Post erstellen</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidenav__list-item">
+                    <span onclick="toggleSubMenu(this)">Register Admin</span>
+                    <ul class="sub-menu">
+                        <li class="sub-menu__item">
+                            <a href="<?php echo URLROOT; ?>/admin/registerAdmin">Register</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="sidenav__logout">
+                <a href="<?php echo URLROOT; ?>/admin/logout" class="btn-logout">Logout</a>
+            </div>
+        </aside>
 
 
     <main class="main">
+    <?php flash('event_message'); ?>
+    <?php flash('blogpost_message'); ?>
+    <?php flash('fashionart_message'); ?>
       <div class="main-cards">
         <div class="card">Overview Landing Page
           <div class="main-cards_section">

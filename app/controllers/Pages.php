@@ -23,6 +23,14 @@ class Pages extends Controller {
         $this->view('pages/about', $data);         
     }
 
+    public function error404() {
+        $data = [
+            'title' => '404 Error',
+            'description' => 'Page not found'
+        ];
+        $this->view('pages/404', $data);
+    }
+
     public function fashionArt(){
         $events = $this->adminModel->getAllEvents();
         $fashionArtImages = $this->adminModel->getFashionArtImages();
@@ -58,4 +66,3 @@ class Pages extends Controller {
     }
 }
 ?>
-

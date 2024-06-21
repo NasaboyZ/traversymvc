@@ -2,20 +2,22 @@
 class Admin extends Controller {
     private $adminModel;
     private $validation;
-
+   // Constructor to initialize the Validation and AdminModel instances
     public function __construct() {
         $this->validation = new Validation();
         $this->adminModel = $this->model('AdminModel');
-       
+      
+        // Start session and redirect to login if session has expired
         if (!startSession(3600)) { 
             redirect('pages/login');
         }
     }
-    
+      // Default method to load the dashboard
     public function index() {
         $this->dashboard();
     }
 
+    // Login method to handle user login
     public function login() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -49,7 +51,7 @@ class Admin extends Controller {
                 $loggedInUser = $this->adminModel->login($data['username'], $data['password']);
     
                 if ($loggedInUser) {
-                    error_log('Login erfolgreich für Benutzer: ' . $loggedInUser->username);
+                    error_log('Session user_id: ' . $_SESSION['user_id']);
                     $this->createUserSession($loggedInUser);
                 } else {
                     error_log('Login fehlgeschlagen für Benutzer: ' . $data['username']);
@@ -70,14 +72,16 @@ class Admin extends Controller {
             $this->view('admin/login', $data);
         }
     }
+  
 
+    // Create user session
     public function createUserSession($user) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['user_name'] = $user->username;
         error_log('Redirecting to admin/admin-dashboard');
         redirect('admin/admin-dashboard');
     }
-
+    // Logout user
     public function logout() {
         unset($_SESSION['user_id']);
         unset($_SESSION['user_name']);
@@ -85,9 +89,10 @@ class Admin extends Controller {
         redirect('pages/login');
     }
 
+    // Load the dashboard with events, fashion art images, and blog posts
     public function dashboard() {
         if (!isset($_SESSION['user_id'])) {
-            redirect('admin/login');
+            redirect('pages/login');
         }
     
         $events = $this->adminModel->getAllEvents();
@@ -103,8 +108,9 @@ class Admin extends Controller {
     
         $this->view('admin/admin-dashboard', $data);
     }
-    
 
+
+     // Add new event
     public function newsbanner() {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
@@ -128,7 +134,7 @@ class Admin extends Controller {
                 $date = desinfect(trim($_POST['event_date'][$key]));
                 if (!empty($title) && !empty($description) && !empty($date)) {
                     if (!$this->adminModel->addEvent($title, $description, $date)) {
-                        die('Something went wrong while adding the event.');
+                        $this->handle404Error();
                     }
                 }
             }
@@ -138,6 +144,8 @@ class Admin extends Controller {
             redirect('admin/newsbanner');
         }
     }
+
+    // Load fashion and branding section
 
     public function fashionAndBranding() {
         if (!isset($_SESSION['user_id'])) {
@@ -153,6 +161,7 @@ class Admin extends Controller {
         $this->view('admin/fashionandbranding', $data);
     }
 
+    // Upload fashion art image
     public function uploadFashionArtImage() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -190,7 +199,7 @@ class Admin extends Controller {
                         if ($this->adminModel->addFashionArtImage($data['image_title'], $data['image_description'], $target_file)) {
                             redirect('admin/admin-dashboard');
                         } else {
-                            $data['error'] = 'Fehler beim Speichern des Bildes in der Datenbank.';
+                            $this->handle404Error();
                         }
                     } else {
                         $data['error'] = 'Fehler beim Verkleinern des Bildes.';
@@ -208,7 +217,7 @@ class Admin extends Controller {
         }
     }
     
-
+        // Delete event
     public function deleteEvent($id) {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
@@ -216,14 +225,18 @@ class Admin extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->adminModel->deleteEvent($id)) {
+                
+            flash('event_message', 'Event erfolgreich gelöscht', 'alert alert-danger');
                 redirect('admin/dashboard');
             } else {
-                die('Something went wrong');
+                $this->handle404Error();
             }
         } else {
             redirect('admin/admin-dashboard');
         }
     }
+
+     // Delete fashion art image
     public function deleteFashionArtImage($id) {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
@@ -231,14 +244,17 @@ class Admin extends Controller {
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->adminModel->deleteFashionArtImage($id)) {
+                flash('fashionart_message', 'Beitrag erfolgreich gelöscht', 'alert alert-danger');
                 redirect('admin/dashboard');
             } else {
-                die('Something went wrong');
+                $this->handle404Error();
             }
         } else {
             redirect('admin/admin-dashboard');
         }
     }
+
+    // Edit fashion art image
     public function editFashionArtImage($id) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -276,9 +292,10 @@ class Admin extends Controller {
                 }
     
                 if ($this->adminModel->updateFashionArtImage($id, $data['title'], $data['description'], $data['file_path'])) {
+                    flash('fashionart_message', 'Beitrag erfolgreich aktualisiert', 'alert alert-success');
                     redirect('admin/admin-dashboard');
                 } else {
-                    die('Etwas ist schief gelaufen.');
+                    $this->handle404Error();
                 }
             } else {
                 $this->view('admin/edit_fashion_art_image', $data);
@@ -300,6 +317,7 @@ class Admin extends Controller {
     }
     
 
+    // Edit event
     public function editEvent($id) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_SPECIAL_CHARS);
@@ -328,9 +346,10 @@ class Admin extends Controller {
     
             if (empty($data['title_err']) && empty($data['description_err']) && empty($data['date_err'])) {
                 if ($this->adminModel->updateEvent($data)) {
+                    flash('event_message', 'Event erfolgreich aktualisiert', 'alert alert-success');
                     redirect('admin/dashboard');
                 } else {
-                    die('Etwas ist schief gelaufen.');
+                    $this->handle404Error();
                 }
             } else {
                 $this->view('admin/edit_event', $data);
@@ -352,6 +371,7 @@ class Admin extends Controller {
         }
     }
 
+      // Register new admin
     public function registerAdmin() {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -384,7 +404,7 @@ class Admin extends Controller {
                 if($this->adminModel->insertAdmin($data)) {
                     redirect('admin/admin-dashboard');
                 } else {
-                    die('Etwas ist schief gelaufen.');
+                    $this->handle404Error();
                 }
             }
         } else {
@@ -407,6 +427,7 @@ class Admin extends Controller {
 
 
     
+     // Load blog post creation form
     public function adminBlogPost() {
         $data = [
             'username' => $_SESSION['user_name']
@@ -453,7 +474,7 @@ class Admin extends Controller {
                     if ($this->adminModel->insertBlogpost($title, $body, $new_filename)) {
                         redirect('admin/admin-dashboard');
                     } else {
-                        die('Etwas ist schief gelaufen.');
+                        $this->handle404Error();
                     }
                 } else {
                     $errors['image_err'] = 'Fehler beim Hochladen des Bildes';
@@ -481,6 +502,8 @@ class Admin extends Controller {
             $this->view('admin/admin-blogpost', $data);
         }
     }
+
+    // Delete blog post
     public function deleteBlogpost($id) {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
@@ -488,14 +511,17 @@ class Admin extends Controller {
     
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($this->adminModel->deleteBlogpost($id)) {
+                flash('blogpost_message', 'Blogpost erfolgreich gelöscht', 'alert alert-danger');
                 redirect('admin/admin-dashboard');
             } else {
-                die('Something went wrong');
+                $this->handle404Error();
             }
         } else {
             redirect('admin/admin-dashboard');
         }
     }
+
+    // Edit blog post
     public function editBlogpost($id) {
         if (!isset($_SESSION['user_id'])) {
             redirect('admin/login');
@@ -540,9 +566,10 @@ class Admin extends Controller {
                 }
 
                 if ($this->adminModel->updateBlogpost($data)) {
+                    flash('blogpost_message', 'Blogpost erfolgreich aktualisiert', 'alert alert-success');
                     redirect('admin/admin-dashboard');
                 } else {
-                    die('Etwas ist schief gelaufen.');
+                    $this->handle404Error();
                 }
             } else {
                 $this->view('admin/edit_blogpost', $data);
@@ -563,7 +590,6 @@ class Admin extends Controller {
             $this->view('admin/edit_blogpost', $data);
         }
     }
-    
     
 }
 ?>

@@ -26,6 +26,27 @@ body {
   text-decoration: none;
   color: var(--famaly-color-light);
 }
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #c6edd0;
+  border-color: #c3e6cb;
+  width: 17%;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
 
 .menu-icon {
   position: fixed;
@@ -92,6 +113,51 @@ body {
   font-size: 20px;
   color: #ddd;
 }
+/* admin-dashboard.css */
+
+.menu-icon {
+  position: fixed;
+  display: flex;
+  top: 5px;
+  left: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: #DADAE3;
+  border-radius: 50%;
+  z-index: 1;
+  cursor: pointer;
+  padding: 12px;
+}
+
+.sidenav {
+  grid-area: sidenav;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 240px;
+  position: fixed;
+  overflow-y: auto;
+  transform: translateX(-245px);
+  transition: all 0.6s ease-in-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+  background-color: var(--bg-aside);
+}
+
+.sidenav.active {
+  transform: translateX(0);
+}
+
+.sidenav__close-icon {
+  position: absolute;
+  visibility: visible;
+  top: 8px;
+  right: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #ddd;
+}
+
 
 .sidenav__list {
   padding: 0;
@@ -226,6 +292,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.dashboard-link{
+  color: black;
+  text-decoration: none;
+
 }
 
 .main-content-community .options-menu a,
