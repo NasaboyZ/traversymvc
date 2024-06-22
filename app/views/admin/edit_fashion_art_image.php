@@ -7,7 +7,7 @@
         </div>
 
         <header class="header">
-            <div class="header__avatar"><a href="<?php echo URLROOT; ?>/admin/dashboard">Welcome <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</a></div>
+            <div class="header__avatar"><a class="dashboard-link" href="<?php echo URLROOT; ?>/admin/dashboard">Welcome <?php echo htmlspecialchars($_SESSION['user_name']); ?>!</a></div>
         </header>
 
         <aside class="sidenav">

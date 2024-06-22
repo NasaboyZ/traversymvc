@@ -72,7 +72,7 @@
     </section>
 
     <section class="container-dreamer">
-        <h2 class="sub dreamer-title">Communty Looks</h2>
+        <h2 class="sub dreamer-title">Community Looks</h2>
         <div class="mwc-looks-conntainer">
             <div class="bild-von-tamina">
                 <img src="<?php echo URLROOT; ?>/assets/bilder/tanina-meroli.jpeg" srcset="<?php echo URLROOT; ?>/assets/bilder/tanina-meroli.webp" alt="jung talentiert tanina blond jung und gut aussehend">
@@ -87,32 +87,28 @@
         </div>
     </section>
 
-    <!-- art in zurich -->
-    <section class="art-in-zurich-container">
-        <h2 class="sub subtitle-art">Art in Zürich</h2>
-        <div class="container-bild-text-boxen">
-            <div class="bild-art-zurich">
-                <img src="<?php echo URLROOT; ?>/assets/bilder/mario-anzunaki.jpeg" srcset="<?php echo URLROOT; ?>/assets/bilder/mario-anzunaki.webp" alt="Ein Bild über einen Jungen man der sich Mario nennt der Künstler ist schwarze haare, orange shirt.">
-            </div>
-            <div class="fliess-text-art-in-zurich">
-                <h2 class="sub mario-title">Mario Azunaki</h2>
-                <p class="text text-in-zurich">Zürich, eine Stadt bekannt für ihre kulturelle Vielfalt und künstlerische Kreativität, hat einen aufstrebenden Künstler, der die lokale Kunstszene mit seinem einzigartigen Stil und seiner expressiven Vision bereichert. Mario Azunaki, gebürtig aus Zürich, ist mehr als nur ein Künstler – er ist ein Schöpfer von Emotionen und Geschichten durch seine Werke.</p>
-            </div>
-        </div>
-    </section>
-
     <section class="api">
-        <h2 class="sub blog-post-ort-title">Blog Post</h2>
+    <h2 class="sub blog-post-ort-title">Blog Post</h2>
+    <div class="blogposts-container">
         <?php foreach ($data['blogposts'] as $post): ?>
-        <div class="blogpost">
-            <h3><?php echo htmlspecialchars($post->title); ?></h3>
-            <p><?php echo htmlspecialchars($post->body); ?></p>
-            <?php if (!empty($post->image)): ?>
-            <img src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
-            <?php endif; ?>
-        </div>
+            <div class="blogpost-card">
+                <img class="blogpost-image" src="<?php echo URLROOT . '/uploads/' . htmlspecialchars(basename($post->image)); ?>" alt="<?php echo htmlspecialchars($post->title); ?>">
+                <div class="blogpost-content">
+                    <span class="blogpost-category">Admin Blogpost </span>
+                    <h3><?php echo htmlspecialchars($post->title); ?></h3>
+                    <p><?php echo htmlspecialchars($post->body); ?></p>
+                    <div class="blogpost-footer">
+                       
+                        
+                    </div>
+                </div>
+            </div>
         <?php endforeach; ?>
-    </section>
+    </div>
+</section>
+
+
+
     <?php require APPROOT . '/views/inc/footer.php'; ?>
 </body>
 </html>

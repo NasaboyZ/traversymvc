@@ -142,11 +142,8 @@ class AdminModel {
         return $this->db->execute();
     }
 
-    public function getBlogpostById($id) {
-        $this->db->query('SELECT * FROM blogposts WHERE id = :id');
-        $this->db->bind(':id', $id);
-        return $this->db->single();
-    }
+     
+   
     public function updateBlogpost($data) {
         $this->db->query('UPDATE blogposts SET title = :title, body = :body, image = :image WHERE id = :id');
         $this->db->bind(':title', $data['title']);

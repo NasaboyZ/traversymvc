@@ -227,7 +227,7 @@ class Admin extends Controller {
             if ($this->adminModel->deleteEvent($id)) {
                 
             flash('event_message', 'Event erfolgreich gelöscht', 'alert alert-danger');
-                redirect('admin/dashboard');
+                redirect('admin/admin-dashboard');
             } else {
                 $this->handle404Error();
             }

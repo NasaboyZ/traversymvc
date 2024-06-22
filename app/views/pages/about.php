@@ -11,7 +11,7 @@
             <p class="text-in-header">Wir sind ein Kollektiv, das sich um seine Belange kümmert und sich nicht
                 ausschliesslich um die
                 Erledigung seiner Aufgaben kümmert.Denn gemeinsam bauen wir mehr als nur ein Unternehmen auf. Wir
-                möchten, dass MoiWear Collectiv ein Anziehungspunkt für Talente und die Verkörperung großartiger Ideen
+                möchten, dass MoiWear Collectiv ein Anziehungspunkt für Talente und die Verkörperung grossartiger Ideen
                 ist.
 
                 Deshalb gibt es hier Freiheit, Kreativität, Inspiration und Sinn, die jeden von uns entwickeln.</p>
@@ -43,7 +43,7 @@
         <div class="section">
             <h2 class="sub der-titel-von-section-reverse">M.W.C</h2>
             <p class="fliestext-in-container-about">Wir sind dafür bekannt, lokal präsent zu sein, wenn sowohl grosse
-                als auch kleine Marken ihre Events feiern, einschließlich unserer eigenen Veranstaltungen. Dabei setzen
+                als auch kleine Marken ihre Events feiern, einschliesslich unserer eigenen Veranstaltungen. Dabei setzen
                 wir Trends in der aktuellen Zeit ein und präsentieren jungen Menschen die neuesten Kollektionen.</p>
         </div>
     </section>
@@ -66,7 +66,7 @@
     <section class="kleiner-spruch-in-der-main">
         <h2 class="sub sub-in-section-about">Willst du dabei sein?!</h2>
         <p class="fliestext-in-container-about">Bist du bereit, Teil einer pulsierenden Community zu werden, die Mode
-            als Ausdruck der Lebensfreude feiert? Dann schließe dich uns an und erlebe Fashion, wo Stil und gute Laune
+            als Ausdruck der Lebensfreude feiert? Dann schliesse dich uns an und erlebe Fashion, wo Stil und gute Laune
             Hand in Hand gehen. Verpasse nicht die Gelegenheit, in einer Welt voller Kreativität und Modebegeisterung
             aufzugehen! Besuche Unsere Event Days.</p>
     </section>

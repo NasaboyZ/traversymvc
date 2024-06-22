@@ -1,52 +1,71 @@
-// Funktion zum Umschalten des Untermenüs
+// Toggle the submenu when clicking on the menu item
 function toggleSubMenu(element) {
-  var subMenu = element.nextElementSibling;
-  subMenu.classList.toggle('active');
+  const subMenu = element.nextElementSibling;
+  if (subMenu.style.display === "block") {
+      subMenu.style.display = "none";
+  } else {
+      subMenu.style.display = "block";
+  }
+}
+// Toggle the options menu when clicking on the ellipsis icon
+function showOptions(id) {
+  const optionsMenu = document.getElementById('options-' + id);
+  optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
 }
 
-// Funktion zum Anzeigen der Optionen
-function showOptions(eventId) {
-  var menu = document.getElementById('options-' + eventId);
-  menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
-}
+// Add event listeners for the sidenav toggle and close icons
+document.addEventListener("DOMContentLoaded", function() {
+  const menuIcon = document.querySelector(".menu-icon");
+  const sidenav = document.querySelector(".sidenav");
+  const closeIcon = document.querySelector(".sidenav__close-icon");
 
-// Funktion zum Bearbeiten des Events
-function editEvent(eventId) {
-  // Redirect to the edit page with the event ID
-    window.location.href = '<?php echo URLROOT; ?>/admin/editEvent/' + eventId;
-}
+  menuIcon.addEventListener("click", function() {
+      sidenav.classList.toggle('active');
+  });
 
-// Funktion zur Bestätigung des Löschens
-function confirmDelete(eventId) {
-  if (confirm('Are you sure you want to delete this event?')) {
-      // Submit a form to delete the event
-      var form = document.createElement('form');
-      form.method = 'POST';
-      form.action = '<?php echo URLROOT; ?>/admin/deleteEvent/' + eventId;
-      document.body.appendChild(form);
-      form.submit();
+  closeIcon.addEventListener("click", function() {
+      sidenav.classList.toggle('active');
+  });
+
+  // Add event listeners for the submenu toggles
+  document.querySelectorAll('.sidenav__list-item > span').forEach(item => {
+      item.addEventListener('click', function() {
+          const subMenu = this.nextElementSibling;
+          subMenu.classList.toggle('active');
+      });
+  });
+});
+
+
+// If menu icon is clicked, it will automatically add the new class 'active' to the 'sidenav' component
+menuIconEl.addEventListener('click', function() {
+    toggleClassName(sidenavEl, 'active');
+});
+
+sidenavCloseEl.addEventListener('click', function() {
+    toggleClassName(sidenavEl, 'active');
+});
+
+// Toggle the submenu when clicking on the menu item
+function toggleSubMenu(element) {
+  const subMenu = element.nextElementSibling;
+  if (subMenu.style.display === "block") {
+      subMenu.style.display = "none";
+  } else {
+      subMenu.style.display = "block";
   }
 }
 
-// Funktion zum Umschalten der Sidebar
-function toggleSidebar() {
-  const sidebar = document.querySelector('.sidenav');
-  sidebar.classList.toggle('active');
+// Show options menu when clicking on the ellipsis icon
+function showOptions(id) {
+  const optionsMenu = document.getElementById("options-" + id);
+  if (optionsMenu.style.display === "block") {
+      optionsMenu.style.display = "none";
+  } else {
+      optionsMenu.style.display = "block";
+  }
 }
 
-// Funktion zum Umschalten des Untermenüs
-function toggleSubMenu(element) {
-  const subMenu = element.nextElementSibling;
-  subMenu.classList.toggle('active');
-}
-
-// Event Listener für das Burger-Menü
-document.querySelector('.menu-icon').addEventListener('click', toggleSidebar);
-
-// Event Listener für die Schließen-Schaltfläche der Sidebar
-document.querySelector('.sidenav__close-icon').addEventListener('click', toggleSidebar);
-
-// Event Listener für das Untermenü
 document.querySelectorAll('.sidenav__list-item > span').forEach(item => {
   item.addEventListener('click', () => toggleSubMenu(item));
 });

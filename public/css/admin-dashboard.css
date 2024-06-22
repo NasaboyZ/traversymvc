@@ -287,11 +287,13 @@ body {
   height: auto;
   border-radius: 5px;
 }
-
+.options-menu{
+  display: flex;
+}
 .main-content-community .options-menu {
   display: flex;
+  gap: 1rem;
   flex-direction: column;
-  gap: 10px;
 }
 
 .dashboard-link{

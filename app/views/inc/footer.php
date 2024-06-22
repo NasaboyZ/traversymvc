@@ -7,16 +7,16 @@
 
     <div class="footer-unter-pages-container">
         <div class="logo-container-footer">
-            <a class="sub" href="<?php echo URLROOT; ?>/pages/index">M.W.C</a>
+            <a class="sub" href="<?php echo URLROOT; ?>pages">M.W.C</a>
         </div>
 
         <div class="container-links">
             <ul>
-                <li><a href="<?php echo URLROOT; ?>/pages/index">Home</a></li>
-                <li><a href="<?php echo URLROOT; ?>/pages/about">about</a></li>
-                <li><a href="<?php echo URLROOT; ?>/pages/fashionAndArt">Fashion & Art</a>
-                <li><a href="<?php echo URLROOT; ?>/pages/community">Community</a>
-                <li><a href="<?php echo URLROOT; ?>/pages/login">Login</a></li>
+                <li><a href="<?php echo URLROOT; ?>pages">Home</a></li>
+                <li><a href="<?php echo URLROOT; ?>pages/about">about</a></li>
+                <li><a href="<?php echo URLROOT; ?>pages/fashionAndArt">Fashion & Art</a>
+                <li><a href="<?php echo URLROOT; ?>pages/community">Community</a>
+                <li><a href="<?php echo URLROOT; ?>pages/login">Login</a></li>
             </ul>
         </div>
 

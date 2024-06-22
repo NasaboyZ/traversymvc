@@ -11,7 +11,7 @@
     <header>
         <h1>404 - Seite nicht gefunden</h1>
         <p>Die von Ihnen angeforderte Seite konnte nicht gefunden werden.</p>
-        <a href="<?php echo URLROOT; ?>/pages/">Zur Startseite</a>
+        <a href="<?php echo URLROOT; ?>pages/">Zur Startseite</a>
     </header>
     <footer>
         <p>&copy; <?php echo date('Y'); ?> Mein Unternehmen. Alle Rechte vorbehalten.</p>

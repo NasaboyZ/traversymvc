@@ -1,11 +1,11 @@
 <nav class="navbar">
-    <div class="logo"><a href="<?php echo URLROOT; ?>/pages/index">M.W.C</a></div>
+    <div class="logo"><a href="<?php echo URLROOT; ?>/pages">M.W.C</a></div>
     <ul class="web-nav">
         <div class="nav-part1">
-            <li><a href="<?php echo URLROOT; ?>/pages/index" class="active">Home</a></li>
-            <li><a href="<?php echo URLROOT; ?>/pages/about">About</a></li>
-            <li><a href="<?php echo URLROOT; ?>/pages/fashionArt">Fashion & Art</a></li>
-            <li><a href="<?php echo URLROOT; ?>/pages/community">Community</a></li>
+            <li><a href="<?php echo URLROOT; ?>pages" class="active">Home</a></li>
+            <li><a href="<?php echo URLROOT; ?>pages/about">About</a></li>
+            <li><a href="<?php echo URLROOT; ?>pages/fashionArt">Fashion & Art</a></li>
+            <li><a href="<?php echo URLROOT; ?>pages/community">Community</a></li>
         </div>
         <div class="nav-part2">
             <li><a href="<?php echo URLROOT; ?>/pages/kontakt">Kontakt</a></li>

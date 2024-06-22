@@ -91,6 +91,7 @@
 }
 
 .carousel {
+  
   position: relative;
   overflow: hidden;
 }
@@ -140,7 +141,8 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 400px; /* Feste Höhe für den Slider, kann angepasst werden */
+    height: auto; 
+
 }
 
 .slider {
@@ -188,4 +190,13 @@
 
 .play_arrow, .pause-button {
     cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  .section-main-reverse {
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+  
 }

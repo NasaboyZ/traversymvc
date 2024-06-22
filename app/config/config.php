@@ -9,7 +9,7 @@ define('DB_Name', 'shareposts');
 // App root
 define ('APPROOT', dirname(dirname(__FILE__)));
 //url root
-define ('URLROOT', 'http://localhost:8888/traversymvc');
+define ('URLROOT', 'http://localhost:8888/traversymvc/');
 
 //site name
 define ('SITENAME', 'Mue Wear Collectiv');
